@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
+  <title>Panucci's Pizza</title>
+</head>
+<body>
+  <div class="row">
+    <div class="col s6">
+      <div class="input-field">
+        <input id="search" type="text">
+        <label for="search">Search</label>
+      </div>
+      <ul class="container collection" id="ingredients-list"></ul>
+    </div>
+    <div class="col s6">
+      <button class="btn" id="create">Create</button>
+      <form>
+        <div class="input-field">
+          <input id="name" type="text" placeholder="Your name" required>
+          <label for="name"></label>
+          <input class="btn" type="submit" value="Order">
+        </div>
+      </form>
+      <div id="total">
+      </div>
+      <ul class="container collection" id="customer-list"></ul>
+    </div>
+  </div>
+
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyA16NnsWu5_pv3raj-2bqy2zXTnIBo9quQ",
+      authDomain: "panucci-s-pizza.firebaseapp.com",
+      databaseURL: "https://panucci-s-pizza.firebaseio.com",
+      projectId: "panucci-s-pizza",
+      storageBucket: "panucci-s-pizza.appspot.com",
+      messagingSenderId: "328165056532",
+      appId: "1:328165056532:web:937d2a645d286a55dd8701"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+   <script src="assets/bundle.js"></script>
+</body>
+</html>
