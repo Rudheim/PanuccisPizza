@@ -1,5 +1,4 @@
-
-const id = 'wJ2UpqlTdMlI09yE68RO'
+//import { orderID } from './Create'
 
 class UI {
   constructor(id){
@@ -40,5 +39,4 @@ class UI {
   //}
 }
 
-let ingUI = new UI(id);
-ingUI.getList();
+export { UI }

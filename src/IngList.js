@@ -22,10 +22,12 @@ function renderIngredients(ingredient){
 }
 
 //getting data from db
-db.collection('ingredients').orderBy('name').get().then((snapshot) => {
-  snapshot.docs.forEach(ingredient => {
-    renderIngredients(ingredient)
+const getIng = () => {
+  db.collection('ingredients').orderBy('name').get().then((snapshot) => {
+    snapshot.docs.forEach(ingredient => {
+      renderIngredients(ingredient)
+    });
   });
-});
+};
 
-export {ing_list}
+export {ing_list, getIng}

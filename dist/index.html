@@ -20,17 +20,19 @@
       <ul class="container collection" id="ingredients-list"></ul>
     </div>
     <div class="col s6">
-      <button class="btn" id="create">Create</button>
-      <form>
-        <div class="input-field">
+      <form id="create">
+        <div class="input-field center-align">
           <input id="name" type="text" placeholder="Your name" required>
           <label for="name"></label>
-          <input class="btn" type="submit" value="Order">
+          <input class="btn" type="submit" value="CREATE">
         </div>
       </form>
-      <div id="total">
-      </div>
+      <div id="total"> </div>
       <ul class="container collection" id="customer-list"></ul>
+      <div class="center-align">
+        <p id="total"></p>
+        <button class="btn" id="order">ORDER</button>
+      </div>
     </div>
   </div>
 
