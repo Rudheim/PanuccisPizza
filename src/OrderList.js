@@ -1,42 +1,44 @@
-//import { orderID } from './Create'
+    let list = document.querySelector('#customer-list');
+    let total = document.querySelector('#total');
+    let orderBTN = document.querySelector('#order');
 
-class UI {
-  constructor(id){
-    this.list = document.querySelector('#customer-list');
-    this.orders = db.collection('orders').doc(id);
-  }
-  render(data){
-      this.list.innerHTML = ""; //deleting all inside the list to put newly generated, otherwise it will stuck on each other
+    let ordersDB = db.collection('orders')
 
-      data.ingredients.forEach((ingredient) => {
-      
-      let details = ingredient.split(', ')
 
-      let li = document.createElement('a');
-      let title = document.createElement('span');
-      let price = document.createElement('span');
+function render(data){
+  list.innerHTML = ""; //deleting all inside the list to put newly generated, otherwise it will stuck on each other
 
-      title.textContent = details[0];
-      price.textContent = parseInt(details[1]);
+  let prices = [];
+  let i = 0;
 
-      li.appendChild(title).classList.add('title');
-      li.appendChild(price).classList.add('secondary-content');
-      //adding elements to the DOM
-      this.list.appendChild(li).classList.add('collection-item');
-    })
-  }
+  data.ingredients.forEach((ingredient) => {
+  
+    let details = ingredient.split(', ')
 
-  getList(){
-    this.orders.onSnapshot((doc) => {
-      this.render(doc.data());
+    let li = document.createElement('a');
+    let title = document.createElement('span');
+    let price = document.createElement('span');
+
+    li.setAttribute('position-id', i);
+    i++;
+    title.textContent = details[0];
+    price.textContent = parseInt(details[1]);
+
+    prices.push(parseInt(details[1]))
+
+    li.appendChild(title).classList.add('title');
+    li.appendChild(price).classList.add('secondary-content');
+    //adding elements to the DOM
+    list.appendChild(li).classList.add('collection-item');
+    total.textContent = prices.reduce((a, b) => a + b, 0);
+    orderBTN.classList.remove('hidden');
+  })
+}
+
+function getList(id){
+    ordersDB.doc(id).onSnapshot((doc) => {
+      render(doc.data());
     });
   }
 
-  // getList(callback){
-  //   this.orders.get().then((data) => {
-  //     this.render(data.data());
-  //   });
-  //}
-}
-
-export { UI }
+export { getList, ordersDB, list }

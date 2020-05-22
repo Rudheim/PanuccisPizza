@@ -1,4 +1,5 @@
 const ing_list = document.querySelector('#ingredients-list');
+const ingDB = db.collection('ingredients');
 
 function renderIngredients(ingredient){
   //create element for each ingredient
@@ -23,11 +24,12 @@ function renderIngredients(ingredient){
 
 //getting data from db
 const getIng = () => {
-  db.collection('ingredients').orderBy('name').get().then((snapshot) => {
-    snapshot.docs.forEach(ingredient => {
-      renderIngredients(ingredient)
-    });
-  });
+  ingDB.get()
+       .then((snapshot) => {
+          snapshot.docs.forEach(ingredient => {
+            renderIngredients(ingredient)
+          });
+        });
 };
 
-export {ing_list, getIng}
+export {ing_list, getIng, ingDB}

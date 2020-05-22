@@ -2,24 +2,23 @@ span, p{
   pointer-events: none;
 }
 
-.x{
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
-.delete{
-  float:left;
-  margin-left: 1px;
-}
-
-#customer-list .collection-item{
-  padding-left: 5px;
-}
-
 i{
   cursor: pointer;
 }
 
-.filtered{
+.hidden{
   display: none !important;
+}
+
+#create{
+  max-width: 300px;
+  margin: auto;
+}
+
+#search{
+  max-width: 300px;
+}
+
+#customer-list{
+  margin-top: 55px;
 }

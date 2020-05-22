@@ -11,27 +11,26 @@
   <title>Panucci's Pizza</title>
 </head>
 <body>
-  <div class="row">
+  <form id="create">
+    <div class="input-field center-align">
+      <i class="material-icons prefix">account_circle</i>
+      <input id="name" type="text" placeholder="Your name" required>
+      <label for="name"></label>
+      <button class="waves-effect waves-light btn-small" type="submit">CREATE PIZZA</button>
+    </div>
+  </form>
+  <div class="row hidden">
     <div class="col s6">
-      <div class="input-field">
-        <input id="search" type="text">
-        <label for="search">Search</label>
+      <div class="input-field center-align">
+        <input id="search" type="text" placeholder="Type to search">
       </div>
       <ul class="container collection" id="ingredients-list"></ul>
     </div>
     <div class="col s6">
-      <form id="create">
-        <div class="input-field center-align">
-          <input id="name" type="text" placeholder="Your name" required>
-          <label for="name"></label>
-          <input class="btn" type="submit" value="CREATE">
-        </div>
-      </form>
-      <div id="total"> </div>
       <ul class="container collection" id="customer-list"></ul>
       <div class="center-align">
         <p id="total"></p>
-        <button class="btn" id="order">ORDER</button>
+        <button class="btn hidden" id="order">ORDER</button>
       </div>
     </div>
   </div>
