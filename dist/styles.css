@@ -1,10 +1,79 @@
-span, p{
+/* orange text on buttons */
+nav ul a:hover {
+  color: rgb(255, 166, 0);
+}
+
+.amber.darken-4:hover{
+  background-color: #e65100 !important;
+}
+
+header img{
+  max-width: 65px;
+  max-height: 65px;
+  margin: 0 20px 0 3px;
+}
+
+#logo{
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 1;
+}
+
+
+/* proper display of the cards to make them all eqaul no matter of content */
+.card .card-action:last-child{
+  max-height: 30px;
+}
+
+#ingredients-list span, p {
+  margin: 0;
+}
+
+.card .card-action {
+  padding: 5px 15px 5px 0;
+}
+
+.card .card-content{
+  max-height: 64px;
+  overflow: hidden;
+}
+
+.card:hover{
+  background-color:#ff6f0088;
+}
+
+.parallax-container .parallax img {
+  min-width: 800px;
+}
+
+/* no pointer event because clicken between the lines will result a faild request to DB */
+#ingredients-list span, p{
   pointer-events: none;
 }
 
 i{
   cursor: pointer;
 }
+
+#createbtn{
+  margin: auto;
+}
+
+
+/* proper dislplay and alignment of delete button */
+.delete{
+  float:left;
+  margin-left: 1px;
+  margin-right: 5px;
+}
+
+#customer-list .collection-item{
+  padding-left: 5px;
+}
+
 
 .hidden{
   display: none !important;
@@ -21,4 +90,20 @@ i{
 
 #customer-list{
   margin-top: 55px;
+}
+
+#total{
+  margin-right: 10px;
+}
+
+
+@media screen and (max-width: 500px){
+  nav .brand-logo {
+    font-size: 1.5rem;
+  }
+
+  #logo{
+   max-width: 300px;
+   max-height: 300px;
+  }
 }

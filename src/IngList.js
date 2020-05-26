@@ -2,6 +2,7 @@ const ing_list = document.querySelector('#ingredients-list');
 const ingDB = db.collection('ingredients');
 
 function renderIngredients(ingredient){
+  
   //create element for each ingredient
   let li = document.createElement('a');
   let name = document.createElement('span');

@@ -3,37 +3,129 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
   <title>Panucci's Pizza</title>
 </head>
 <body>
-  <form id="create">
-    <div class="input-field center-align">
-      <i class="material-icons prefix">account_circle</i>
-      <input id="name" type="text" placeholder="Your name" required>
-      <label for="name"></label>
-      <button class="waves-effect waves-light btn-small" type="submit">CREATE PIZZA</button>
-    </div>
-  </form>
-  <div class="row hidden">
-    <div class="col s6">
-      <div class="input-field center-align">
-        <input id="search" type="text" placeholder="Type to search">
+  
+
+  <!-- navbar -->
+  <header>
+    <nav class="nav grey darken-4">
+      <div class="container">
+        <img src="img/logo.png" alt="" class="hide-on-small-only">
+        <a href="#" class="brand-logo">Panucci's Pizza</a>
+        <a href="#" class="sidenav-trigger" data-target="mobile-menu">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#">Pizzas</a></li>
+          <li><a href="#">Create</a></li>
+          <li><a href="#">Contacts</a></li>
+          <li><a href="" class="tooltipped btn-floating btn-small amber darken-4" data-tooltip="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a></li>
+          <li><a href="" class="tooltipped btn-floating btn-small amber darken-4" data-tooltip="Facebook">
+            <i class="fab fa-facebook"></i>
+          </a></li>
+          <li><a href="" class="tooltipped btn-floating btn-small amber darken-4" data-tooltip="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a></li>
+        </ul>
+        <ul class="sidenav" id="mobile-menu">
+          <li><a href="#">Pizzas</a></li>
+          <li><a href="#">Create</a></li>
+          <li><a href="#">Contacts</a></li>
+        </ul>
       </div>
-      <ul class="container collection" id="ingredients-list"></ul>
-    </div>
-    <div class="col s6">
-      <ul class="container collection" id="customer-list"></ul>
-      <div class="center-align">
-        <p id="total"></p>
-        <button class="btn hidden" id="order">ORDER</button>
-      </div>
+    </nav>
+  </header>
+
+    <img src="img/logo.png" alt="" id="logo">
+ 
+ 
+   <!-- parallax 1-->
+   <div class="parallax-container">
+    <div class="parallax">
+      <img src="img/pizza_parabanner1.jpg" alt="" class="responsive-img">
     </div>
   </div>
+
+
+  <!-- populr pizzas -->
+  <div class="container">
+    <div class="row" id="menu">
+    </div>
+  </div>
+
+
+  <!-- parallax 2-->
+  <div class="parallax-container">
+    <div class="parallax">
+      <img src="img/pizza_parabanner2.jpg" alt="" class="responsive-img">
+    </div>
+  </div>
+
+
+  <!-- form create pizza -->
+  <div class="container">
+    <form id="create">
+      <div class="input-field">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="name" type="text" placeholder="Your name" required>
+        <label for="name"></label>
+      </div>
+      <div class="input-field">
+        <i class="material-icons prefix">local_pizza</i>
+        <select required>
+          <option value="" disabled selected>Pizza size</option>
+          <option value="Big">Big</option>
+          <option value="Medium">Medium</option>
+          <option value="Small">Small</option>
+        </select>
+        <div class="center-align">
+          <button class="waves-effect waves-light btn-small" type="submit" id="createbtn">CREATE PIZZA</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- create pizza menu -->
+  <div class="container">
+    <ul class="collapsible hidden">
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">local_pizza</i>Create your own pizzas
+        </div>
+        <div class="collapsible-body">
+            <div class="row">
+              <div class="col s12 l6">
+                <div class="input-field center-align">
+                  <input id="search" type="text" placeholder="Type to search">
+                </div>
+                <ul class="collection" id="ingredients-list"></ul>
+              </div>
+              <div class="col s12 l6">
+                <div class="right-align">
+                  <span id="total"></span>
+                  <button class="btn hidden" id="order">ORDER</button>
+                </div>
+                <ul class="collection" id="customer-list"></ul>
+                </div>
+              </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+    
+  <!-- footer -->
+
+ 
 
   <script>
     var firebaseConfig = {
@@ -50,5 +142,6 @@
     const db = firebase.firestore();
   </script>
    <script src="assets/bundle.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
