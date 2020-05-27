@@ -30,19 +30,20 @@ function render(data){
     pos++;
   
     title.textContent = details[0];
-    price.textContent = parseInt(details[1]); //converting string into a number to count total cost of the order
+    price.textContent = parseInt(details[1]) + '$'; //converting string into a number to count total cost of the order
     i.innerText = 'delete';
 
     prices.push(parseInt(details[1])) //pushing cost of each ingredient into array
 
     li.appendChild(i).classList.add('material-icons', 'delete', 'red-text', 'darken-1-text');
-    li.appendChild(title).classList.add('title');
-    li.appendChild(price).classList.add('secondary-content');
+    li.appendChild(title).classList.add('title', 'black-text');
+    li.appendChild(price).classList.add('secondary-content', 'black-text');
    
     list.appendChild(li).classList.add('collection-item');
     
     total.textContent = prices.reduce((a, b) => a + b, 0) + '$'; //calculating sum of all ordered ingredients
     orderBTN.classList.remove('hidden');
+    list.classList.remove('hidden');
 
   })
 }

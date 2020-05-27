@@ -23,9 +23,9 @@
           <i class="material-icons">menu</i>
         </a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="#">Pizzas</a></li>
-          <li><a href="#">Create</a></li>
-          <li><a href="#">Contacts</a></li>
+          <li><a href="#menu">Pizzas</a></li>
+          <li><a href="#create-form">Create</a></li>
+          <li><a href="#contanct">Contacts</a></li>
           <li><a href="" class="tooltipped btn-floating btn-small amber darken-4" data-tooltip="Instagram">
             <i class="fab fa-instagram"></i>
           </a></li>
@@ -37,18 +37,17 @@
           </a></li>
         </ul>
         <ul class="sidenav" id="mobile-menu">
-          <li><a href="#">Pizzas</a></li>
-          <li><a href="#">Create</a></li>
-          <li><a href="#">Contacts</a></li>
+          <li><a href="#menu">Pizzas</a></li>
+          <li><a href="#create-form">Create</a></li>
+          <li><a href="#contanct">Contacts</a></li>
         </ul>
       </div>
     </nav>
   </header>
 
-    <img src="img/logo.png" alt="" id="logo">
- 
- 
+
    <!-- parallax 1-->
+   <img src="img/logo.png" alt="" id="logo">
    <div class="parallax-container">
     <div class="parallax">
       <img src="img/pizza_parabanner1.jpg" alt="" class="responsive-img">
@@ -58,74 +57,106 @@
 
   <!-- populr pizzas -->
   <div class="container">
-    <div class="row" id="menu">
+    <div class="row scrollspy" id="menu">
     </div>
   </div>
 
-
   <!-- parallax 2-->
+  <img src="img/bake_logo.png" alt="" id="bake_logo">
   <div class="parallax-container">
     <div class="parallax">
       <img src="img/pizza_parabanner2.jpg" alt="" class="responsive-img">
     </div>
   </div>
-
+  <div class="create_pizza">
+    <h2 class=" white-text center">Create your own pizza!</h2>
+  </div>
+ 
 
   <!-- form create pizza -->
-  <div class="container">
-    <form id="create">
-      <div class="input-field">
-        <i class="material-icons prefix">account_circle</i>
-        <input id="name" type="text" placeholder="Your name" required>
-        <label for="name"></label>
-      </div>
-      <div class="input-field">
-        <i class="material-icons prefix">local_pizza</i>
-        <select required>
-          <option value="" disabled selected>Pizza size</option>
-          <option value="Big">Big</option>
-          <option value="Medium">Medium</option>
-          <option value="Small">Small</option>
-        </select>
-        <div class="center-align">
-          <button class="waves-effect waves-light btn-small" type="submit" id="createbtn">CREATE PIZZA</button>
-        </div>
-      </div>
-    </form>
+  <div class="container scrollspy" id="create-form">
+    <div class="row">
+      <form id="create">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="name" type="text" class="validate" required>
+            <label for="name">Name</label>
+          </div>
+          <div class="input-field col s12">
+            <i class="material-icons prefix">local_pizza</i>
+            <select required>
+              <option value="" disabled selected>Pizza size</option>
+              <option value="Big">Big</option>
+              <option value="Medium">Medium</option>
+              <option value="Small">Small</option>
+            </select>
+          </div>
+          <div class="center-align">
+            <button class="waves-effect waves-light btn-small amber darken-4" type="submit" id="createbtn">CREATE PIZZA
+              <i class="material-icons right">add</i>
+            </button>
+          </div>
+      </form>
+    </div>
   </div>
+
 
   <!-- create pizza menu -->
-  <div class="container">
-    <ul class="collapsible hidden">
-      <li>
-        <div class="collapsible-header">
-          <i class="material-icons">local_pizza</i>Create your own pizzas
+  <div class="container hidden" id="create_pizza">
+    <div class="row">
+      <div class="input-field col s12 l10 offset-l2">
+        <input id="search" type="text" placeholder="Type to search">
+      </div>
+      <div class="col s12 l5 offset-l1">
+        <ul class="collection z-depth-3" id="ingredients-list"></ul>
+      </div>
+
+      <div class="col s12 l3 offset-l1">
+        <h4 class="center">Your order:</h4>
+        <ul class="collection z-depth-3 hidden" id="customer-list"></ul>
+        <div class="left">
+          <button class="btn hidden amber darken-4" id="order" >ORDER</button>
+          <span id="total"></span>
         </div>
-        <div class="collapsible-body">
-            <div class="row">
-              <div class="col s12 l6">
-                <div class="input-field center-align">
-                  <input id="search" type="text" placeholder="Type to search">
-                </div>
-                <ul class="collection" id="ingredients-list"></ul>
-              </div>
-              <div class="col s12 l6">
-                <div class="right-align">
-                  <span id="total"></span>
-                  <button class="btn hidden" id="order">ORDER</button>
-                </div>
-                <ul class="collection" id="customer-list"></ul>
-                </div>
-              </div>
         </div>
-      </li>
-    </ul>
+      </div>
   </div>
 
-    
-  <!-- footer -->
+  
+  <!-- contact form and footer -->
+  <footer class="page-footer grey darken-3">
+    <section class="section container scrollspy" id="contanct">
+      <div class="row">
+        <div class="col s12 l5">
+          <h2 class="amber-text text-darken-4">Get in Touch</h2>
+          <p>Phone: 8 900 3000 040</p>
+          <p>Location: Vossenvangen 5700</p>
+          <p>Adress: Bovejn 83</p>
+        </div>
+        <div class="col s12 l5 offset-l2">
+          <h4 class="white-text center">Have questions?</h4>
+          <form action="">
+            <div class="input-field">
+              <i class="material-icons prefix">email</i>
+              <input type="email" id="email">
+              <label for="email">Your Email</label>
+            </div>
+            <div class="input-field">
+              <i class="material-icons prefix">message</i>
+              <textarea id="message" class="materialize-textarea"></textarea>
+            </div>
+            <div class="input-field center">
+              <button class="btn amber darken-4">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <div class="footer-copyright grey darken-4">
+      <div class="container center-align">&copy; 2020 Rudheim</div>
+    </div>
+  </footer>
 
- 
 
   <script>
     var firebaseConfig = {

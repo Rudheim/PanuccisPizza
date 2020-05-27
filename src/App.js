@@ -11,8 +11,9 @@ let orderID = '';
 const create = document.querySelector('#create');
 const name = document.querySelector('#name');
 const search = document.querySelector('#search');
-var size = document.querySelector('select')
-var collaps = document.querySelector('.collapsible');
+const create_pizza = document.querySelector('#create_pizza');
+var size = document.querySelector('select');
+
 
 getPizzas();
 
@@ -23,7 +24,7 @@ create.addEventListener('submit', (e) => {
   
   getIng();
 
-  collaps.classList.remove('hidden');
+  create_pizza.classList.remove('hidden');
   create.classList.add('hidden');
 
   const now = new Date();
@@ -114,11 +115,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-  var instance = M.Collapsible.init(collaps);
-  create.addEventListener('submit', (e) => {
-    e.preventDefault();
-    instance.open();
-  });
+  var elems = document.querySelectorAll('.scrollspy');
+  var instances = M.ScrollSpy.init(elems);
 });
 
 document.addEventListener('DOMContentLoaded', function() {

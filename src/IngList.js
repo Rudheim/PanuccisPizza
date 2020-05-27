@@ -13,12 +13,12 @@ function renderIngredients(ingredient){
   li.setAttribute('ingredient-id', ingredient.id);
   name.textContent = ingredient.data().name;
   description.textContent = ingredient.data().description;
-  price.textContent = ingredient.data().price;
+  price.textContent = ingredient.data().price + '$';
 
   //adding elements to the DOM
-  li.appendChild(name).classList.add('title');
-  li.appendChild(price).classList.add('secondary-content');
-  li.appendChild(description);
+  li.appendChild(name).classList.add('title', 'black-text');
+  li.appendChild(price).classList.add('secondary-content', 'black-text');
+  li.appendChild(description).classList.add('grey-text', 'text-darken-1');
 
   ing_list.appendChild(li).classList.add('collection-item')
 }

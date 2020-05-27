@@ -22,18 +22,16 @@ header img{
   z-index: 1;
 }
 
-
 /* proper display of the cards to make them all eqaul no matter of content */
+.card {
+  overflow: hidden;
+}
 .card .card-action:last-child{
   max-height: 30px;
 }
 
-#ingredients-list span, p {
-  margin: 0;
-}
-
-.card .card-action {
-  padding: 5px 15px 5px 0;
+#menu span, p {
+  margin: -5px 0 0 0;
 }
 
 .card .card-content{
@@ -41,9 +39,41 @@ header img{
   overflow: hidden;
 }
 
-.card:hover{
-  background-color:#ff6f0088;
+.card .card-action {
+  padding: 5px 15px 5px 0;
+  margin-bottom: 5px;
 }
+.card .card-action p{
+  font-size: 1.4rem;
+}
+
+.card:hover{
+  border: 2px solid rgb(255, 153, 0);
+  transform: scale(1.05);
+  transition: 0.5s;
+}
+
+#bake_logo{
+  position: absolute;
+  margin: auto;
+  margin-top: 70px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 1;
+}
+
+.create_pizza{
+  background-color:#212121;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.create_pizza h2{
+  margin: 0;
+  padding-bottom: 7px;
+}
+
 
 .parallax-container .parallax img {
   min-width: 800px;
@@ -62,6 +92,55 @@ i{
   margin: auto;
 }
 
+.dropdown-content li>a, .dropdown-content li>span {
+  color: #e65100;
+}
+
+.select-wrapper input.select-dropdown:focus {
+  border-bottom: 1px solid #e65100;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+  color:  #e65100 !important;
+ }
+
+/* label underline focus color */
+ .input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #e65100 !important;
+  box-shadow: 0 1px 0 0 rgb(255, 94, 0) !important;
+ }
+
+ .input-field input[type=email]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+  color:  #e65100 !important;
+ }
+
+/* label underline focus color */
+ .input-field input[type=email]:focus, .materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #e65100 !important;
+  box-shadow: 0 1px 0 0 rgb(255, 94, 0) !important;
+ }
+ 
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #e65100;
+}
+
+#ingredients-list span.title{
+  font-size: 1.2em;
+}
+
+.collection a.collection-item:not(.active):hover {
+  background-color: #e651007e;
+}
+
+#customer-list a:hover{
+  background-color: white;
+}
+
+.collection {
+  border: none;
+}
 
 /* proper dislplay and alignment of delete button */
 .delete{
@@ -70,10 +149,14 @@ i{
   margin-right: 5px;
 }
 
+.delete:hover{
+  transform: scale(1.5);
+  transition: 0.5s;
+}
+
 #customer-list .collection-item{
   padding-left: 5px;
 }
-
 
 .hidden{
   display: none !important;
@@ -96,14 +179,22 @@ i{
   margin-right: 10px;
 }
 
-
 @media screen and (max-width: 500px){
   nav .brand-logo {
     font-size: 1.5rem;
   }
 
   #logo{
-   max-width: 300px;
-   max-height: 300px;
-  }
+    max-width: 300px;
+    max-height: 300px;
+   }
+
+  #bake_logo{
+    max-width: 300px;
+    max-height: 300px;
+   }
+
+  .create_pizza h2{
+    font-size: 2.0rem;
+   }
 }
