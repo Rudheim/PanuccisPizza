@@ -4,7 +4,7 @@
   "description": "Pizza selling webapp",
   "main": "app.js",
   "scripts": {
-    "build": "node_modules/.bin/webpack --mode production",
+    "build": "node_modules/.bin/webpack -p --devtool false",
     "serve": "webpack-dev-server --mode development"
   },
   "repository": {
