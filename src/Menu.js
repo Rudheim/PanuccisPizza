@@ -48,4 +48,4 @@ const getPizzas = () => {
         });
 };
 
-export {getPizzas}
+export {getPizzas, pizzas}

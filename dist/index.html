@@ -6,8 +6,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
-  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
   <title>Panucci's Pizza</title>
 </head>
 <body>
@@ -26,7 +24,7 @@
           <li><a href="#menu">Pizzas</a></li>
           <li><a href="#create-form">Create</a></li>
           <li><a href="#contanct">Contacts</a></li>
-          <li><a href="" class="tooltipped btn-floating btn-small amber darken-4" data-tooltip="Instagram">
+          <li><a href="#" class="tooltipped btn-floating btn-small amber darken-4" data-tooltip="Instagram">
             <i class="fab fa-instagram"></i>
           </a></li>
           <li><a href="" class="tooltipped btn-floating btn-small amber darken-4" data-tooltip="Facebook">
@@ -35,6 +33,7 @@
           <li><a href="" class="tooltipped btn-floating btn-small amber darken-4" data-tooltip="Twitter">
             <i class="fab fa-twitter"></i>
           </a></li>
+          <li><a href="admin.html">ADMIN</a></li>
         </ul>
         <ul class="sidenav" id="mobile-menu">
           <li><a href="#menu">Pizzas</a></li>
@@ -45,7 +44,6 @@
     </nav>
   </header>
 
-
    <!-- parallax 1-->
    <img src="img/logo.png" alt="" id="logo">
    <div class="parallax-container">
@@ -54,10 +52,9 @@
     </div>
   </div>
 
-
   <!-- populr pizzas -->
   <div class="container">
-    <div class="row scrollspy" id="menu">
+    <div class="row scrollspy row scrollspy col s12 m6 l3" id="menu">
     </div>
   </div>
 
@@ -157,7 +154,9 @@
     </div>
   </footer>
 
-
+  
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
   <script>
     var firebaseConfig = {
       apiKey: "AIzaSyA16NnsWu5_pv3raj-2bqy2zXTnIBo9quQ",
@@ -172,7 +171,7 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
   </script>
-   <script src="assets/bundle.js"></script>
+   <script src="assets/app.bundle.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

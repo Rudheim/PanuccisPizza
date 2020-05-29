@@ -1,6 +1,7 @@
 import './IngList'
 import './OrderList'
 import './Menu'
+import './Materialize'
 
 import { ing_list, getIng, ingDB } from './IngList'
 import { getList, ordersDB, list, total } from './OrderList'
@@ -15,7 +16,7 @@ const create_pizza = document.querySelector('#create_pizza');
 var size = document.querySelector('select');
 
 
-getPizzas();
+  getPizzas();
 
 //
 //---creating new documentin DB to store order details and retrieving uniqe id for each order
@@ -97,37 +98,6 @@ search.addEventListener('keyup', () => {
   filterIngredients(term);
 });
 
-
-
-//
-//---Materialise init
-const icons = document.querySelector('.hide-on-med-and-down');
-icons.addEventListener('mouseover' , (e) =>{
-  e.target.parentElement.classList.add('pulse');
-});
-icons.addEventListener('mouseout' , (e) =>{
-  e.target.parentElement.classList.remove('pulse');
-});
-
-document.addEventListener('DOMContentLoaded', (e) => {
-  var elem = document.querySelector('select');
-  var instance = M.FormSelect.init(elem);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.scrollspy');
-  var instances = M.ScrollSpy.init(elems);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  var elem = document.querySelector('.sidenav');
-  var instance = M.Sidenav.init(elem);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.parallax');
-  var instances = M.Parallax.init(elems);
-});
 
 
 

@@ -1,0 +1,160 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <title>Admin panel</title>
+</head>
+<body>
+
+<!-- navbar -->
+  <header>
+    <nav class="nav grey darken-4">
+      <div class="container">
+        <img src="img/logo.png" alt="" class="hide-on-small-only">
+        <a href="index.html" class="brand-logo">Panucci's Pizza</a>
+        <a href="index.html" class="sidenav-trigger" data-target="mobile-menu">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li class="logged-in"><a href="#modal-account" class="modal-trigger">Account</a></li>
+          <li class="logged-in" id="logout"><a href="#">Logout</a></li>
+          <li class="logged-out"><a href="#modal-login" class="modal-trigger">Login</a></li>
+          <li class="logged-out"><a href="#modal-signup" class="modal-trigger">SignUp</a></li>
+        </ul>
+        <ul class="sidenav" id="mobile-menu">
+          <li class="logged-in"><a href="#modal-account" class="modal-trigger">Account</a></li>
+          <li class="logged-in"><a href="#">Logout</a></li>
+          <li class="logged-out"><a href="#modal-login" class="modal-trigger">Login</a></li>
+          <li class="logged-out"><a href="#modal-signup" class="modal-trigger">SignUp</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+<!-- SIGN UP MODAL -->
+  <div id="modal-signup" class="modal">
+   <div class="modal-content">
+    <h4>Sign up</h4><br />
+      <form id="signup-form">
+        <div class="input-field">
+          <input type="email" id="signup-email" required />
+          <label for="signup-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="signup-password" required />
+          <label for="signup-password">Choose password</label>
+        </div>
+        <button class="btn amber darken-4">Sign up</button>
+      </form>
+    </div>
+  </div>
+
+<!-- LOGIN MODAL -->
+  <div id="modal-login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4><br />
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Your password</label>
+        </div>
+        <button class="btn amber darken-4">Login</button>
+      </form>
+    </div>
+  </div>
+
+<!-- ACCOUNT MODAL -->
+  <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Account details</h4><br />
+      <div class="account-details"></div>
+    </div>
+  </div>
+
+<!-- ADD Pizza MODAL -->
+  <div id="modal-create" class="modal">
+    <div class="modal-content">
+      <form id="addPizza">
+        <div class="row">
+          <div class="input-field col s6">
+            <textarea id="title" class="materialize-textarea" required></textarea>
+            <label for="title">Title</label>
+          </div>
+          <div class="input-field col s2">
+            <textarea id="price" class="materialize-textarea" required></textarea>
+            <label for="price">Price</label>
+          </div>
+          <div class="input-field col s2">
+            <select class="browser-default" id="vegan" required>
+              <option value="false">False</option>
+              <option value="true">True</option>
+            </select>
+          </div>
+          <div class="input-field col s2">
+            <textarea id="img" class="materialize-textarea" required></textarea>
+            <label for="img">img</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="description" class="materialize-textarea" required></textarea>
+            <label for="description">Description</label>
+          </div>
+        </div>
+        <button type="submit" class="waves-effect waves-light btn-small green darken-1">ADD<i class="material-icons right">add</i></button>
+      </form>
+    </div>
+  </div>
+
+<!-- Pizzas list -->
+  <div class="container center logged-in">
+    <div class="container">
+      <a href="#modal-create" class="waves-effect waves-light btn-small green darken-1 modal-trigger">ADD<i class="material-icons right">add</i></a>
+    </div>
+    <table id="pizzaList" class="highlight striped">
+      <thead>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Vegan</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>D</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
+  <script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyA16NnsWu5_pv3raj-2bqy2zXTnIBo9quQ",
+    authDomain: "panucci-s-pizza.firebaseapp.com",
+    databaseURL: "https://panucci-s-pizza.firebaseio.com",
+    projectId: "panucci-s-pizza",
+    storageBucket: "panucci-s-pizza.appspot.com",
+    messagingSenderId: "328165056532",
+    appId: "1:328165056532:web:937d2a645d286a55dd8701"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const auth = firebase.auth();
+</script>
+ <script src="assets/adminApp.bundle.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

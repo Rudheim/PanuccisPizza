@@ -53,6 +53,10 @@ header img{
   transition: 0.5s;
 }
 
+.card .card-reveal{
+  opacity: 0.9;
+}
+
 #bake_logo{
   position: absolute;
   margin: auto;
@@ -177,6 +181,11 @@ i{
 
 #total{
   margin-right: 10px;
+}
+
+/* Styling Admin page */
+.logged-in{
+  display: none;
 }
 
 @media screen and (max-width: 500px){
