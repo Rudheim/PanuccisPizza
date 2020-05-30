@@ -11,7 +11,8 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
-    publicPath: '/assets/'
+    publicPath: '/assets/',
+    watchContentBase: true
   },
   devtool: 'inline-source-map',
   module: {

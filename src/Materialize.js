@@ -32,3 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.modal');
   var instances = M.Modal.init(elems);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.tabs');
+  var instance = M.Tabs.init(elems);
+});
