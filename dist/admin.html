@@ -88,11 +88,14 @@
   </div>
 
 <!-- ADD Pizza MODAL -->
-  <div id="modal-create" class="modal">
+  <div id="modal_create" class="modal">
     <div class="modal-content">
       <form id="addPizza">
+        <div class="center">
+        <button type="submit" class="waves-effect waves-light btn green darken-1">ADD PIZZA<i class="material-icons right">add</i></button>
+        </div>
         <div class="row">
-          <div class="input-field col s6">
+          <div class="input-field col s8">
             <textarea id="title" class="materialize-textarea" required></textarea>
             <label for="title">Title</label>
           </div>
@@ -101,25 +104,74 @@
             <label for="price">Price</label>
           </div>
           <div class="input-field col s2">
+            <span>Vegan</span>
             <select class="browser-default" id="vegan" required>
               <option value="false">False</option>
               <option value="true">True</option>
             </select>
           </div>
-          <div class="input-field col s2">
-            <textarea id="img" class="materialize-textarea" required></textarea>
-            <label for="img">img</label>
-          </div>
           <div class="input-field col s12">
             <textarea id="description" class="materialize-textarea" required></textarea>
             <label for="description">Description</label>
           </div>
+          <div class="input-field col s5"">
+            <input type="file" id="file-create">
+            <button id="upload-btn" class="waves-effect waves-light btn-small green darken-1">UPLOAD<i class="material-icons right">arrow_downward</i></button>
+          </div>
+          </div>
+          <div class="input-field col s7">
+            <img id="img-create" class="img-form" src="" alt="">
+          </div>
         </div>
-        <button type="submit" class="waves-effect waves-light btn-small green darken-1">ADD<i class="material-icons right">add</i></button>
       </form>
     </div>
   </div>
 
+
+  <!-- Edit Pizza MODAL -->
+  <div id="modal_edit" class="modal">
+    <div class="modal-content">
+      <form id="editPizza">
+        <div class="center">
+          <button type="submit" class="waves-effect waves-light btn-small green darken-1">EDIT<i class="material-icons right">edit</i></button>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input disabled value="" id="disabled" type="text" class="validate">
+            <label for="disabled">Pizza-ID</label>
+          </div>
+          <div class="input-field col s8">
+            <textarea id="edit-title" class="materialize-textarea" required></textarea>
+            <label for="edit-title">Title</label>
+          </div>
+          <div class="input-field col s2">
+            <textarea id="edit-price" class="materialize-textarea" required></textarea>
+            <label for="edit-price">Price</label>
+          </div>
+          <div class="input-field col s2">
+            <span>Vegan</span>
+            <select class="browser-default" id="vegan-edit" required>
+              <option value="false">False</option>
+              <option value="true">True</option>
+            </select>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="edit-description" class="materialize-textarea" required></textarea>
+            <label for="edit-description">Description</label>
+          </div>
+          <div class="input-field col s5"">
+            <input type="file" id="file-edit">
+            <button id="upload-btn-edit" class="waves-effect waves-light btn-small green darken-1">UPLOAD<i class="material-icons right">arrow_downward</i></button>
+          </div>
+          <div class="input-field col s7">
+            <img id="img-edit" class="img-form" src="" alt="">
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<!-- Admin Tabs -->
   <div class="container admin">
     <div class="row">
       <div class="col s12">
@@ -131,22 +183,20 @@
         </ul>
       </div>
       <div id="orders" class="col s12">
-
+    <!-- Pizzas tab -->
       </div>
       <div id="pizzas" class="col s12">
         <!-- Pizzas list -->
         <div class="container center addbtn">
-          <a href="#modal-create" class="waves-effect waves-light btn-small green darken-1 modal-trigger">ADD NEW PIZZA<i class="material-icons right">add</i></a>
+          <a href="#modal_create" class="waves-effect waves-light btn-small green darken-1 modal-trigger">ADD NEW PIZZA<i class="material-icons right">add</i></a>
         </div>
-        <table id="pizzaList" class="highlight striped">
+        <table id="pizzaList" class="highlight">
           <thead>
             <tr>
+              <th>Edit</th>
               <th>Title</th>
               <th>Price</th>
-              <th>Vegan</th>
-              <th>Image</th>
-              <th>Description</th>
-              <th>D</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -158,11 +208,14 @@
     </div>
   </div>
 
+  
+
 
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-functions.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-storage.js"></script>
   <script>
   var firebaseConfig = {
     apiKey: "AIzaSyA16NnsWu5_pv3raj-2bqy2zXTnIBo9quQ",
@@ -178,6 +231,7 @@
   const db = firebase.firestore();
   const auth = firebase.auth();
   const functions = firebase.functions();
+  const storage = firebase.storage();
 </script>
  <script src="assets/adminApp.bundle.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

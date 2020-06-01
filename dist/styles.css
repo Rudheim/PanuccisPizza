@@ -196,6 +196,15 @@ i{
   margin: 20px auto 10px auto;
 }
 
+#file-create, #file-edit{
+  margin: 5px;
+}
+
+.img-form{
+  max-width: 200px;
+  max-height: 200px;
+}
+
 @media screen and (max-width: 500px){
   nav .brand-logo {
     font-size: 1.5rem;
