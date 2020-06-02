@@ -1,11 +1,10 @@
-import './IngList'
-import './OrderList'
-import './Menu'
-import './Materialize'
+import './Auth'
 
-import { ing_list, getIng, ingDB } from './IngList'
+import { ing_list, getIng, ingDB} from './IngList'
 import { getList, ordersDB, list, total } from './OrderList'
-import { getPizzas } from './Menu'
+import { getPizzas } from './PizzasMenu'
+
+getPizzas();
 
 let orderID = '';
 
@@ -14,9 +13,6 @@ const name = document.querySelector('#name');
 const search = document.querySelector('#search');
 const create_pizza = document.querySelector('#create_pizza');
 var size = document.querySelector('select');
-
-
-  getPizzas();
 
 //
 //---creating new documentin DB to store order details and retrieving uniqe id for each order
@@ -43,7 +39,7 @@ create.addEventListener('submit', (e) => {
 })
 
 //
-//---choosing disered ingredients and adding them to the ordersDB
+//--choosing disered ingredients and adding them to the ordersDB
 ing_list.addEventListener('click', (e) => {
   if(e.target.nodeName !== 'UL'){
     let id = e.target.getAttribute('ingredient-id');

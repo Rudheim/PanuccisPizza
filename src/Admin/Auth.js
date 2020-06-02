@@ -1,5 +1,9 @@
-import { getPizzas, setupUI} from './Admin'
+import { setupUI } from './Admin'
+import { getPizzas } from './Pizzas'
+import { getIngList } from './Ingredients'
+import { closeForms } from '../Main/Materialize'
 
+const usersDB = db.collection('users');
 //
 //--sign up new user
 const signupForm = document.querySelector('#signup-form');
@@ -10,9 +14,8 @@ signupForm.addEventListener('submit', (e) => {
   const password = signupForm['signup-password'].value;
 
   auth.createUserWithEmailAndPassword(email, password).then(cred => {
-    const modal = document.querySelector('#modal-signup');
-    M.Modal.getInstance(modal).close();
-    signupForm.reset();
+    const close = new closeForms('modal-signup', signupForm);
+    close.modalClose();
   }).catch(err => console.log(err.message));
 })
 
@@ -26,20 +29,19 @@ loginForm.addEventListener('submit', (e) => {
   const password = loginForm['login-password'].value;
   auth.signInWithEmailAndPassword(email, password).then(cred => {
     //closing modal using materialize and reseting input fields
-    const modal = document.querySelector('#modal-login');
-    M.Modal.getInstance(modal).close();
-    loginForm.reset();
+    const close = new closeForms('modal-login', loginForm);
+    close.modalClose();
   }).catch(err => console.log(err.message));
 })
 
 //
-//--logout
+// --logout
 const logout = document.querySelector('#logout')
 logout.addEventListener('click', (e) => {
   e.preventDefault();
   auth.signOut().then(() => {
     setupUI();
-    console.log('user signed out')
+    location.reload();
   });
 })
 
@@ -51,6 +53,7 @@ auth.onAuthStateChanged(user => {
         user.admin = idTokenResult.claims.admin;
         setupUI(user);
         getPizzas();
+        getIngList();
       })
     }
 })

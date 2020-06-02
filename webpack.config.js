@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    app: './src/App.js',
-    adminApp: './src/Admin.js'}
+    app: './src/Main/App.js',
+    adminApp: './src/Admin/Admin.js'}
     ,
   output: {
     path: path.resolve(__dirname, 'dist/assets'),

@@ -10,21 +10,24 @@
 </head>
 <body>
 
-<!-- navbar -->
+<!-- NAVBAR -->
   <header>
     <nav class="nav grey darken-4">
       <div class="container">
+        <!-- LOGO -->
         <img src="img/logo.png" alt="" class="hide-on-small-only">
         <a href="index.html" class="brand-logo">Panucci's Pizza</a>
         <a href="index.html" class="sidenav-trigger" data-target="mobile-menu">
           <i class="material-icons">menu</i>
         </a>
+        <!-- MENU -->
         <ul class="right hide-on-med-and-down">
           <li class="logged-in"><a href="#modal-account" class="modal-trigger">Account</a></li>
           <li class="logged-in" id="logout"><a href="#">Logout</a></li>
           <li class="logged-out"><a href="#modal-login" class="modal-trigger">Login</a></li>
           <li class="logged-out"><a href="#modal-signup" class="modal-trigger">SignUp</a></li>
         </ul>
+        <!-- MOBILE-MENU -->
         <ul class="sidenav" id="mobile-menu">
           <li class="logged-in"><a href="#modal-account" class="modal-trigger">Account</a></li>
           <li class="logged-in"><a href="#">Logout</a></li>
@@ -34,6 +37,62 @@
       </div>
     </nav>
   </header>
+
+<!-- Admin Tabs -->
+  <div class="container admin">
+  <div class="row">
+    <div class="col s12">
+      <!-- TABS -->
+      <ul class="tabs">
+        <li class="tab col s3"><a href="#orders">Order</a></li>
+        <li class="tab col s3"><a href="#pizzas">Pizzas</a></li>
+        <li class="tab col s3"><a href="#ingredients">Ingredients</a></li>
+        <li class="tab col s3"><a href="#users">Users</a></li>
+      </ul>
+    </div>
+    <!-- ORDERS TAB -->
+    <div id="orders" class="col s12">
+    </div>
+    <!-- PIZZAS TAB -->
+    <div id="pizzas" class="col s12">
+      <div class="container center addbtn">
+        <a href="#modal_create" class="waves-effect waves-light btn-small green darken-1 modal-trigger">ADD NEW PIZZA<i class="material-icons right">add</i></a>
+      </div>
+      <table id="pizzaList" class="highlight">
+        <thead>
+          <tr>
+            <th>Edit</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="pizza-list">
+        </tbody>
+      </table>
+    </div>
+    <!-- INGEDIENTS TAB -->
+    <div id="ingredients" class="col s12">
+      <div class="container center addbtn">
+        <a href="#modal_create_ingredient" class="waves-effect waves-light btn-small green darken-1 modal-trigger">ADD NEW INGREDIENT<i class="material-icons right">add</i></a>
+      </div>
+      <table id="IngredientList" class="highlight">
+        <thead>
+          <tr>
+            <th>Edit</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="ing_list">
+        </tbody>
+      </table>
+    </div>
+    <!-- USERS TAB -->
+    <div id="users" class="col s12"></div>
+  </div>
+  </div> 
 
 <!-- SIGN UP MODAL -->
   <div id="modal-signup" class="modal">
@@ -87,7 +146,7 @@
     </div>
   </div>
 
-<!-- ADD Pizza MODAL -->
+<!-- ADD PIZZA MODAL -->
   <div id="modal_create" class="modal">
     <div class="modal-content">
       <form id="addPizza">
@@ -95,15 +154,15 @@
         <button type="submit" class="waves-effect waves-light btn green darken-1">ADD PIZZA<i class="material-icons right">add</i></button>
         </div>
         <div class="row">
-          <div class="input-field col s8">
+          <div class="input-field col s12 m8">
             <textarea id="title" class="materialize-textarea" required></textarea>
             <label for="title">Title</label>
           </div>
-          <div class="input-field col s2">
+          <div class="input-field col s7 l2">
             <textarea id="price" class="materialize-textarea" required></textarea>
             <label for="price">Price</label>
           </div>
-          <div class="input-field col s2">
+          <div class="input-field col s5 l2">
             <span>Vegan</span>
             <select class="browser-default" id="vegan" required>
               <option value="false">False</option>
@@ -114,21 +173,24 @@
             <textarea id="description" class="materialize-textarea" required></textarea>
             <label for="description">Description</label>
           </div>
-          <div class="input-field col s5"">
+          <div class="input-field col s12 m4">
             <input type="file" id="file-create">
-            <button id="upload-btn" class="waves-effect waves-light btn-small green darken-1">UPLOAD<i class="material-icons right">arrow_downward</i></button>
+            <button id="upload-btn" class="waves-effect waves-light btn-small blue darken-1">UPLOAD IMG<i class="material-icons right">arrow_downward</i></button>
           </div>
+          <div class="input-field col s12 m8">
+            <div class="img-placeholder">
+              <div class="center img-form">
+                <img id="img-create" class="responsive-img" src="" alt="Upload you image here">
+              </div>
+            </div>         
           </div>
-          <div class="input-field col s7">
-            <img id="img-create" class="img-form" src="" alt="">
           </div>
         </div>
       </form>
     </div>
   </div>
 
-
-  <!-- Edit Pizza MODAL -->
+<!-- EDIT PIZZA MODAL -->
   <div id="modal_edit" class="modal">
     <div class="modal-content">
       <form id="editPizza">
@@ -140,15 +202,15 @@
             <input disabled value="" id="disabled" type="text" class="validate">
             <label for="disabled">Pizza-ID</label>
           </div>
-          <div class="input-field col s8">
+          <div class="input-field col s12 m8">
             <textarea id="edit-title" class="materialize-textarea" required></textarea>
             <label for="edit-title">Title</label>
           </div>
-          <div class="input-field col s2">
+          <div class="input-field col s7 l2">
             <textarea id="edit-price" class="materialize-textarea" required></textarea>
             <label for="edit-price">Price</label>
           </div>
-          <div class="input-field col s2">
+          <div class="input-field col s5 l2">
             <span>Vegan</span>
             <select class="browser-default" id="vegan-edit" required>
               <option value="false">False</option>
@@ -159,58 +221,77 @@
             <textarea id="edit-description" class="materialize-textarea" required></textarea>
             <label for="edit-description">Description</label>
           </div>
-          <div class="input-field col s5"">
+          <div class="input-field col s12 m4"">
             <input type="file" id="file-edit">
-            <button id="upload-btn-edit" class="waves-effect waves-light btn-small green darken-1">UPLOAD<i class="material-icons right">arrow_downward</i></button>
+            <button id="upload-btn-edit" class="waves-effect waves-light btn-small blue darken-1">UPLOAD IMG<i class="material-icons right">arrow_downward</i></button>
           </div>
-          <div class="input-field col s7">
-            <img id="img-edit" class="img-form" src="" alt="">
+          <div class="input-field col s12 m8">
+            <div class="img-placeholder">
+              <div class="center img-form">
+                <img id="img-edit" class="responsive-img" src="" alt="">
+              </div>
+            </div>
         </div>
         </div>
       </form>
     </div>
   </div>
 
-<!-- Admin Tabs -->
-  <div class="container admin">
-    <div class="row">
-      <div class="col s12">
-        <ul class="tabs">
-          <li class="tab col s3"><a href="#orders">Order</a></li>
-          <li class="tab col s3"><a href="#pizzas">Pizzas</a></li>
-          <li class="tab col s3"><a href="#ingredients">Ingredients</a></li>
-          <li class="tab col s3"><a href="#users">Users</a></li>
-        </ul>
-      </div>
-      <div id="orders" class="col s12">
-    <!-- Pizzas tab -->
-      </div>
-      <div id="pizzas" class="col s12">
-        <!-- Pizzas list -->
-        <div class="container center addbtn">
-          <a href="#modal_create" class="waves-effect waves-light btn-small green darken-1 modal-trigger">ADD NEW PIZZA<i class="material-icons right">add</i></a>
+<!-- ADD INGREDIENT MODAL -->
+  <div id="modal_create_ingredient" class="modal">
+    <div class="modal-content">
+      <form id="addIngredientForm">
+        <div class="center">
+        <button type="submit" class="waves-effect waves-light btn green darken-1">ADD INGREDIENT<i class="material-icons right">add</i></button>
         </div>
-        <table id="pizzaList" class="highlight">
-          <thead>
-            <tr>
-              <th>Edit</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </div>
-      <div id="ingredients" class="col s12"></div>
-      <div id="users" class="col s12"></div>
+        <div class="row">
+          <div class="input-field col s12 m8">
+            <textarea id="ing_name" class="materialize-textarea" required></textarea>
+            <label for="ing_name">Title</label>
+          </div>
+          <div class="input-field col s7 l4">
+            <textarea id="ing_price" class="materialize-textarea" required></textarea>
+            <label for="ing_price">Price</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="ing_description" class="materialize-textarea" required></textarea>
+            <label for="ing_description">Description</label>
+          </div> 
+        </div>
+      </form>
     </div>
   </div>
 
+  <!-- EDIT INGREDIENT MODAL -->
+  <div id="modal_edit_ingredient" class="modal">
+    <div class="modal-content">
+      <form id="editIngredientForm">
+        <div class="center">
+        <button type="submit" class="waves-effect waves-light btn green darken-1">EDIT INGREDIENT<i class="material-icons right">edit</i></button>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input disabled value="" id="disabled_ing" type="text" class="validate">
+            <label for="disabled_ing">Ingredient-ID</label>
+          </div>
+          <div class="input-field col s12 m8">
+            <textarea id="ing_name_edit" class="materialize-textarea" required></textarea>
+            <label for="ing_name_edit">Title</label>
+          </div>
+          <div class="input-field col s7 l4">
+            <textarea id="ing_price_edit" class="materialize-textarea" required></textarea>
+            <label for="ing_price_edit">Price</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea id="ing_description_edit" class="materialize-textarea" required></textarea>
+            <label for="ing_descriptio_editn">Description</label>
+          </div> 
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
   
-
-
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>

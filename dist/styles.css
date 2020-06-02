@@ -2,17 +2,20 @@
 nav ul a:hover {
   color: rgb(255, 166, 0);
 }
-
 .amber.darken-4:hover{
-  background-color: #e65100 !important;
+  background-color: #ff521d !important;
 }
 
+/* body > header > nav > div > ul.right.hide-on-med-and-down > li:nth-child(7) > a > i{
+  padding-top: 3px;
+} */
+
+/*logo styles */
 header img{
   max-width: 65px;
   max-height: 65px;
   margin: 0 20px 0 3px;
 }
-
 #logo{
   position: absolute;
   margin: auto;
@@ -26,17 +29,35 @@ header img{
 .card {
   overflow: hidden;
 }
-.card .card-action:last-child{
+/* .card .card-action:last-child{
   max-height: 30px;
+} */
+
+#menu p{
+  margin: 0 0 0 15px;
 }
 
-#menu span, p {
-  margin: -5px 0 0 0;
+#menu a:hover{
+  background-color: rgb(71, 202, 71) !important;
 }
 
 .card .card-content{
-  max-height: 64px;
+  min-height: 110px;
+  max-height: 110px;
   overflow: hidden;
+  padding: 20px 5px 0;
+}
+
+.card .card-content p{
+  height: 60px;
+  overflow: hidden;
+}
+
+/* .card .card-content div{
+  height: 40px;
+} */
+.card .card-content a{
+  margin-top: 15px;
 }
 
 .card .card-action {
@@ -44,7 +65,7 @@ header img{
   margin-bottom: 5px;
 }
 .card .card-action p{
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .card:hover{
@@ -55,6 +76,10 @@ header img{
 
 .card .card-reveal{
   opacity: 0.9;
+}
+
+.card .card-reveal p{
+  font-size: 1.1rem;
 }
 
 #bake_logo{
@@ -183,27 +208,54 @@ i{
   margin-right: 10px;
 }
 
-/* Styling Admin page */
+footer ul li{
+  display: inline;
+}
+
+/* ------------------- */
+/* --Styling Admin page*/
+
+/* when user loged in to stop displaying some items like sign-up */
 .logged-in{
   display: none;
 }
 
+/* items that only admin can see */
 .admin{
   display: none;
 }
 
+/* green buttons on top of the create and edit modals */
 .addbtn{
   margin: 20px auto 10px auto;
 }
 
+/*margin for buttons to choose file */
 #file-create, #file-edit{
   margin: 5px;
 }
 
+/* padding so image can look like inside box */
 .img-form{
-  max-width: 200px;
-  max-height: 200px;
+  padding: 10px;
 }
+
+/* box decoration where image will be placed */
+.img-placeholder{
+  border: 2px dashed lightgrey;
+  max-width: 430px;
+  resize: both;
+  background: rgb(245, 245, 245);
+}
+
+/* changed colors of mat. tabs */
+.tabs .indicator {
+  background-color: #e65100;
+}
+.tabs .tab a:hover, .tabs .tab a.active{
+  color: #e65100;
+}
+
 
 @media screen and (max-width: 500px){
   nav .brand-logo {

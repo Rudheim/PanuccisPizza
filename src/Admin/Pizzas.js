@@ -1,35 +1,9 @@
-import './Materialize'
-import './Auth'
-
-import { pizzas } from './Menu'
-
-//
-//Class to close modals after submiting the form, clearing the fields and refreshing the page. Need to pass modal id in a string! format and id of the form to close
-class closeForms{
-  constructor(modal, form){
-    this.modal = document.querySelector(`#${modal}`);
-    this.form = form;
-  }
-  modalClose(){
-    M.Modal.getInstance(this.modal).close();
-    this.form.reset();
-    location.reload();
-  }
-}
-
-//
-//firebase getting true and false as a string, this func transforms string into the boolean.
-const boolcheck = (checkVal) => {
-  if(checkVal == 'true'){
-    return true
-  } else {
-    return false
-  }
-}
+import { pizzas } from '../Main/PizzasMenu'
+import { closeForms } from '../Main/Materialize'
 
 // 
 //--get pizzas from DB and rendering it to the screen in table form
-const list = document.querySelector('tbody')
+const list = document.querySelector('#pizza-list');
 
 const getPizzas = () => {
 pizzas.get()
@@ -171,34 +145,13 @@ pizzaList.addEventListener('click', e => {
 })
 
 //
-//--changing UI acording to type of person logged in
-const loggedOutElem = document.querySelectorAll('.logged-out');
-const loggedInElem = document.querySelectorAll('.logged-in')
-const accountDetails = document.querySelector('.account-details');
-const adminItems = document.querySelectorAll('.admin');
-
-const setupUI = (loggedUser) => {
-  if(loggedUser){
-    if(loggedUser.admin){
-      adminItems.forEach(item => {
-        item.style.display = 'block';
-      }) 
-    }
-    //account info
-    const html = `
-      <div>Logged in as ${loggedUser.email}</div>
-      <div class="pink-text">${loggedUser.admin ? 'Admin' : 'User'}</div>
-    `;
-    accountDetails.innerHTML = html;
-    loggedInElem.forEach(elem => elem.style.display = 'block');
-    loggedOutElem.forEach(elem => elem.style.display = 'none');
+//firebase getting true and false as a string, this func transforms string into the boolean.
+const boolcheck = (checkVal) => {
+  if(checkVal == 'true'){
+    return true
   } else {
-    list.innerHTML = '';
-    adminItems.forEach(item => item.style.display = 'none');
-    loggedInElem.forEach(elem => elem.style.display = '');
-    loggedOutElem.forEach(elem => elem.style.display = 'block');
+    return false
   }
 }
 
-
-export { getPizzas, setupUI}
+export { getPizzas, list}
