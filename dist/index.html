@@ -24,26 +24,62 @@
           <li><a href="#menu">Pizzas</a></li>
           <li><a href="#create-form">Create</a></li>
           <li><a href="#contanct">Contacts</a></li>
-          <li><a class="dropdown-trigger btn-floating btn-small green darken-2" href="#!" data-target="dropdown1"><i class="material-icons">person_outline</i></a></li>
-          <li><a href="" class="btn-floating btn-small yellow darken-3">
-            <i class="icons material-icons">shopping_cart</i>
-          </a></li>
+          <li class="logged-in"><a href="" class="btn-floating btn green darken-3">
+            <i class="icons material-icons">shopping_cart</i></a><span class="new badge green darken-3" data-badge-caption="">empty</span></li>
+          <li><a class="dropdown-trigger btn btn grey darken-3" href="#!" data-target="dropdown1">
+            <i id="account_icon" class="material-icons">account_circle</i></a></li>
+          <li class="logged-in" id="greeting">Hi, guest</li>
         </ul>
         <ul id="dropdown1" class="dropdown-content">
-          <li><a href="#modal-signup" class="modal-trigger">Sign Up</a></li>
-          <li><a href="#modal-login"  class="modal-trigger">Login</a></li>
-          <li class=""><a href="#" id="logout">Logout</a></li>
-          <li class="divider"></li>
-          <li><a href="admin.html">ADMIN</a></li>
+          <li class="logged-out"><a href="#modal-signup" class="modal-trigger">Sign Up</a></li>
+          <li class="logged-out"><a href="#modal-login"  class="modal-trigger">Login</a></li>
+          <li class="logged-in"><a href="#modal-account" class="modal-trigger">Profile</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li class="logged-in"><a id="logout">Logout</a></li>
+          <li class="admin"><a href="admin.html" class="indigo darken-3">ADMIN</a></li>
         </ul>
         <ul class="sidenav" id="mobile-menu">
+          <li class="logged-out"><a href="#modal-signup" class="modal-trigger">Sign Up</a></li>
+          <li class="logged-out"><a href="#modal-login"  class="modal-trigger">Login</a></li>
+          <li class="logged-in"><a href="#modal-account" class="modal-trigger">Profile</a></li>
+          <li class="admin"><a href="admin.html" class="indigo darken-1">ADMIN</a></li>
+          <li class="divider" tabindex="-1"></li>
           <li><a href="#menu">Pizzas</a></li>
           <li><a href="#create-form">Create</a></li>
           <li><a href="#contanct">Contacts</a></li>
+          <li class="divider" tabindex="-1"></li>
+          <li class="logged-in"><a id="logout">Logout</a></li>
         </ul>
       </div>
     </nav>
   </header>
+
+<!-- ACCOUNT MODAL -->
+  <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Account details</h4><br/>
+      <p class="account-details deep-orange-text text-accent-3"></p>
+      <form id="user_profile">
+        <div class="row">
+          <div class="input-field col s12">
+            <input disabled value="" id="profile_id" type="text">
+            <label for="profile_id" class="active">User-ID</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea disabled value="" id="profile_name" class="materialize-textarea" required></textarea>
+            <label for="profile_name" class="active">Name</label>
+          </div>
+          <div class="input-field col s12">
+            <textarea disabled value="" id="profile_email" class="materialize-textarea"></textarea>
+            <label for="profile_email" class="active">Email</label>
+          </div>
+        </div>
+        <div class="center">
+          <button type="submit" class="waves-effect waves-light btn-small green darken-1">Edit Profile<i class="material-icons right">edit</i></button>
+        </div>
+      </form>
+    </div>
+  </div>
 
 <!-- SIGN UP MODAL -->
   <div id="modal-signup" class="modal">

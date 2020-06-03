@@ -11,32 +11,38 @@
 <body>
 
 <!-- NAVBAR -->
-  <header>
-    <nav class="nav grey darken-4">
-      <div class="container">
-        <!-- LOGO -->
-        <img src="img/logo.png" alt="" class="hide-on-small-only">
-        <a href="index.html" class="brand-logo">Panucci's Pizza</a>
-        <a href="index.html" class="sidenav-trigger" data-target="mobile-menu">
-          <i class="material-icons">menu</i>
-        </a>
-        <!-- MENU -->
-        <ul class="right hide-on-med-and-down">
-          <li class="logged-in"><a href="#modal-account" class="modal-trigger">Account</a></li>
-          <li class="logged-in" id="logout"><a href="#">Logout</a></li>
-          <li class="logged-out"><a href="#modal-login" class="modal-trigger">Login</a></li>
-          <li class="logged-out"><a href="#modal-signup" class="modal-trigger">SignUp</a></li>
-        </ul>
-        <!-- MOBILE-MENU -->
-        <ul class="sidenav" id="mobile-menu">
-          <li class="logged-in"><a href="#modal-account" class="modal-trigger">Account</a></li>
-          <li class="logged-in"><a href="#">Logout</a></li>
-          <li class="logged-out"><a href="#modal-login" class="modal-trigger">Login</a></li>
-          <li class="logged-out"><a href="#modal-signup" class="modal-trigger">SignUp</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+<header>
+  <nav class="nav grey darken-4">
+    <div class="container">
+      <img src="img/logo.png" alt="" class="hide-on-small-only">
+      <a href="index.html" class="brand-logo">Panucci's Pizza</a>
+      <a href="#" class="sidenav-trigger" data-target="mobile-menu">
+        <i class="material-icons">menu</i>
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li class="logged-in"><a href="" class="btn-floating btn green darken-3">
+          <i class="icons material-icons">shopping_cart</i></a></li>
+        <li><a class="dropdown-trigger btn btn grey darken-3" href="#!" data-target="dropdown1">
+          <i id="account_icon" class="material-icons">account_circle</i></a></li>
+        <li class="logged-in" id="greeting">Hi, guest</li>
+      </ul>
+      <ul id="dropdown1" class="dropdown-content">
+        <li class="logged-out"><a href="#modal-signup" class="modal-trigger">Sign Up</a></li>
+        <li class="logged-out"><a href="#modal-login"  class="modal-trigger">Login</a></li>
+        <li class="logged-in"><a href="#modal-account" class="modal-trigger">Profile</a></li>
+        <li class="divider" tabindex="-1"></li>
+        <li class="logged-in"><a id="logout">Logout</a></li>
+        <li class="admin"><a href="admin.html" class="indigo darken-3">ADMIN</a></li>
+      </ul>
+      <ul class="sidenav" id="mobile-menu">
+        <li class="logged-out"><a href="#modal-signup" class="modal-trigger">Sign Up</a></li>
+        <li class="logged-out"><a href="#modal-login"  class="modal-trigger">Login</a></li>
+        <li class="logged-in"><a href="#modal-account" class="modal-trigger">Profile</a></li>
+        <li class="logged-in"><a id="logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
 
 <!-- Admin Tabs -->
   <div class="container admin">
@@ -51,8 +57,7 @@
       </ul>
     </div>
     <!-- ORDERS TAB -->
-    <div id="orders" class="col s12">
-    </div>
+    <div id="orders" class="col s12"></div>
     <!-- PIZZAS TAB -->
     <div id="pizzas" class="col s12">
       <div class="container center addbtn">
@@ -131,20 +136,37 @@
   </div>
 
 <!-- ACCOUNT MODAL -->
-  <div id="modal-account" class="modal">
-    <div class="modal-content center-align">
-      <h4>Account details</h4><br/>
-      <div class="account-details">
+<div id="modal-account" class="modal">
+  <div class="modal-content center-align">
+    <h4>Account details</h4><br/>
+    <p class="account-details deep-orange-text text-accent-3"></p>
+    <form id="user_profile">
+      <div class="row">
+        <div class="input-field col s12">
+          <input disabled value="" id="profile_id" type="text">
+          <label for="profile_id" class="active">User-ID</label>
+        </div>
+        <div class="input-field col s12">
+          <textarea disabled value="" id="profile_name" class="materialize-textarea" required></textarea>
+          <label for="profile_name" class="active">Name</label>
+        </div>
+        <div class="input-field col s12">
+          <textarea disabled value="" id="profile_email" class="materialize-textarea"></textarea>
+          <label for="profile_email" class="active">Email</label>
+        </div>
       </div>
-      <div class="admin admin-block">
-        <!-- ADMIN ACTIONS -->
-        <form action="" class="center-align admin-actions admin">
-          <input type="email" placeholder="User email" id="admin-email" required />
-          <button type="submit" class="btn-small yellow darken-2 z-depth-0">Make admin</button>
-        </form>
+      <div class="center">
+        <button type="submit" class="waves-effect waves-light btn-small green darken-1">Edit Profile<i class="material-icons right">edit</i></button>
       </div>
-    </div>
+    </form>
+    <!-- ADMIN ACTIONS -->
+    <form action="" class="center-align admin-actions admin">
+      <input type="email" placeholder="User email" id="admin-email" required />
+      <button type="submit" class="btn-small yellow darken-2 z-depth-0">Make admin</button>
+    </form>
   </div>
+</div>
+ 
 
 <!-- ADD PIZZA MODAL -->
   <div id="modal_create" class="modal">

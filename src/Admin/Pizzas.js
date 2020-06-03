@@ -1,5 +1,5 @@
 import { pizzas } from '../Main/PizzasMenu'
-import { closeForms } from '../Main/Materialize'
+import { closeForms, updateInputFields } from '../Main/Materialize'
 
 // 
 //--get pizzas from DB and rendering it to the screen in table form
@@ -96,8 +96,7 @@ pizzaList.addEventListener('click', e => {
       editform['vegan-edit'].value = pizza.data().vegan;
       editform['edit-description'].value = pizza.data().description;
       imgEdit.src = pizza.data().img;
-      M.updateTextFields();
-      M.textareaAutoResize(editform['edit-description']);
+      updateInputFields(editform['edit-description']);
     }).catch(err => {
       console.log(err.message);
     });

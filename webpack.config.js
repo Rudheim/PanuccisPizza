@@ -3,8 +3,8 @@ const path = require('path');
 module.exports = {
   entry: {
     app: './src/Main/App.js',
-    adminApp: './src/Admin/Admin.js'}
-    ,
+    adminApp: './src/Admin/Admin.js',
+  },
   output: {
     path: path.resolve(__dirname, 'dist/assets'),
     filename: '[name].bundle.js'

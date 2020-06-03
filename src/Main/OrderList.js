@@ -1,9 +1,8 @@
+let ordersDB = db.collection('orders')
+
 let list = document.querySelector('#customer-list');
 let total = document.querySelector('#total');
 let orderBTN = document.querySelector('#order');
-
-let ordersDB = db.collection('orders')
-
 
 function render(data){
   list.innerHTML = ""; //deleting all inside the list to put newly generated list, otherwise it will stuck on each other

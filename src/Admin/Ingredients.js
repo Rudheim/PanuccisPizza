@@ -1,5 +1,5 @@
 import { ingDB } from '../Main/IngList'
-import { closeForms } from '../Main/Materialize'
+import { closeForms, updateInputFields } from '../Main/Materialize'
 
 // 
 //--get pizzas from DB and rendering it to the screen in table form
@@ -62,8 +62,7 @@ ingList.addEventListener('click', e => {
       editform.ing_name_edit.value = ingredient.data().name;
       editform.ing_price_edit.value = ingredient.data().price;
       editform.ing_description_edit.value = ingredient.data().description;
-      M.updateTextFields();
-      M.textareaAutoResize(editform.ing_description_edit);
+      updateInputFields(editform.ing_description_edit);
     }).catch(err => {
       console.log(err.message);
     });

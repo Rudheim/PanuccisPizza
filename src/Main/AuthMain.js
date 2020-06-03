@@ -1,6 +1,26 @@
-import { closeForms } from '../Main/Materialize'
+import { closeForms } from './Materialize'
+import { setupUI } from './App'
 
 const usersDB = db.collection('users');
+
+//
+//--listen for the auth status changes
+auth.onAuthStateChanged(user => {
+  if(user){
+      user.getIdTokenResult().then(idTokenResult => {
+        user.admin = idTokenResult.claims.admin;
+        usersDB.doc(user.uid).get()
+        .then((userdata) => {
+          setupUI(user, userdata);
+        }).catch(err => {
+          console.log(err.message);
+        })    
+      }).catch(err => {
+        console.log(err.message);
+      })
+    }
+})
+
 //
 //--sign up new user
 const signupForm = document.querySelector('#signup-form');
@@ -29,10 +49,6 @@ loginForm.addEventListener('submit', (e) => {
   const email = loginForm['login-email'].value;
   const password = loginForm['login-password'].value;
   auth.signInWithEmailAndPassword(email, password).then(cred => {
-    usersDB.doc(cred.user.uid).get()
-    .then((user) => {
-      console.log(user.data().name)
-    });
     const close = new closeForms('modal-login', loginForm);
     close.modalClose();
   }).catch(err => console.log(err.message));
@@ -47,3 +63,5 @@ logout.addEventListener('click', (e) => {
     location.reload();
   });
 })
+
+export { usersDB } 

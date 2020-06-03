@@ -6,9 +6,9 @@ nav ul a:hover {
   background-color: #ff521d !important;
 }
 
-/* body > header > nav > div > ul.right.hide-on-med-and-down > li:nth-child(7) > a > i{
-  padding-top: 3px;
-} */
+i{
+  cursor: pointer;
+}
 
 /*logo styles */
 header img{
@@ -25,13 +25,39 @@ header img{
   z-index: 1;
 }
 
+span.badge{
+  position: absolute;
+  margin-left: -58px;
+  margin-top: 48px;
+  z-index: 10;
+}
+
+.dropdown-content li{
+  background-color:#212121;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+  color: #ffffff;
+}
+
+.dropdown-content li:hover{
+  background-color: #5a5a5a;
+}
+
+.dropdown-content li.divider{
+  background-color: #ff521d;
+}
+
+#modal-account, #modal-login, #modal-signup{
+  max-width: 350px;
+}
+
 /* proper display of the cards to make them all eqaul no matter of content */
 .card {
   overflow: hidden;
 }
-/* .card .card-action:last-child{
-  max-height: 30px;
-} */
 
 #menu p{
   margin: 0 0 0 15px;
@@ -53,9 +79,6 @@ header img{
   overflow: hidden;
 }
 
-/* .card .card-content div{
-  height: 40px;
-} */
 .card .card-content a{
   margin-top: 15px;
 }
@@ -64,6 +87,7 @@ header img{
   padding: 5px 15px 5px 0;
   margin-bottom: 5px;
 }
+
 .card .card-action p{
   font-size: 1.2rem;
 }
@@ -92,6 +116,13 @@ header img{
   z-index: 1;
 }
 
+.hidden{
+  display: none !important;
+}
+footer ul li{
+  display: inline;
+}
+
 .create_pizza{
   background-color:#212121;
   -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
@@ -113,16 +144,8 @@ header img{
   pointer-events: none;
 }
 
-i{
-  cursor: pointer;
-}
-
 #createbtn{
   margin: auto;
-}
-
-.dropdown-content li>a, .dropdown-content li>span {
-  color: #e65100;
 }
 
 .select-wrapper input.select-dropdown:focus {
@@ -187,10 +210,6 @@ i{
   padding-left: 5px;
 }
 
-.hidden{
-  display: none !important;
-}
-
 #create{
   max-width: 300px;
   margin: auto;
@@ -206,10 +225,6 @@ i{
 
 #total{
   margin-right: 10px;
-}
-
-footer ul li{
-  display: inline;
 }
 
 /* ------------------- */

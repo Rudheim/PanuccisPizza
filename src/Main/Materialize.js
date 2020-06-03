@@ -11,6 +11,8 @@ class closeForms{
   }
 }
 
+//
+//addind materialze pulse effect to the incons on hover
 const pulse = () => {
   const icons = document.querySelectorAll('.icons');
   icons.forEach(icon => {
@@ -21,6 +23,13 @@ const pulse = () => {
       e.target.parentElement.classList.remove('pulse');
     });
   })
+}
+
+//
+//--updating inputfield after dynamicly inserting text
+function updateInputFields(formname){
+  M.updateTextFields();
+  M.textareaAutoResize(formname);
 }
 
 //
@@ -57,7 +66,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.dropdown-trigger');
-  var instances = M.Dropdown.init(elems);
+  var dropdownOptions = {
+    'closeOnClick': true,
+    'hover':true,
+    coverTrigger: false,
+}
+  var instances = M.Dropdown.init(elems, dropdownOptions);
 });
 
-export { closeForms, pulse }
+export { closeForms, pulse, updateInputFields }

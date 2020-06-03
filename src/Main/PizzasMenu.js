@@ -1,16 +1,18 @@
 import { pulse } from "./Materialize";
 
-const menu = document.querySelector('#menu');
 const pizzas = db.collection('pizzas');
+
+const menu = document.querySelector('#menu');
+
 
 function renderMenu(pizza){
 
   let html = ` 
   <div class="col s12 m6 l3">
-    <div pizza-id="#${pizza.id}" class="card" style="overflow: hidden;">
+    <div pizza-id="${pizza.id}" class="card" style="overflow: hidden;">
       <div class="card-image">
         <img src="${pizza.data().img}" class="activator">
-        <a class="halfway-fab btn-floating btn green"><i class="icons material-icons basket">shopping_basket</i></a>
+        <a class="halfway-fab btn-floating btn green"><i class="icons material-icons">shopping_basket</i></a>
       </div>
     <div class="card-content">
       <p class=" center card-title activator grey-text text-darken-4">${pizza.data().title}</p>
@@ -39,4 +41,4 @@ const getPizzas = () => {
         });
 };
 
-export {getPizzas, pizzas}
+export {getPizzas, pizzas, menu}
