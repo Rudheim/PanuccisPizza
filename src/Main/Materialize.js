@@ -1,14 +1,10 @@
 //
-//Class to close modals after submiting the form, clearing the fields and refreshing the page. Need to pass modal id in a string! format and id of the form to close
-class closeForms{
-  constructor(modal, form){
-    this.modal = document.querySelector(`#${modal}`);
-    this.form = form;
-  }
-  modalClose(){
-    M.Modal.getInstance(this.modal).close();
-    this.form.reset();
-  }
+//close modals after submiting the form, clearing the fields and refreshing the page. Need to pass modal id in a string! format and id of the form to close
+function modalClose(modalID, formSelector){
+  const modal = document.querySelector(`#${modalID}`);
+  const form = formSelector;
+  M.Modal.getInstance(modal).close();
+  form.reset();
 }
 
 //
@@ -74,4 +70,4 @@ document.addEventListener('DOMContentLoaded', function() {
   var instances = M.Dropdown.init(elems, dropdownOptions);
 });
 
-export { closeForms, pulse, updateInputFields }
+export { modalClose, pulse, updateInputFields }

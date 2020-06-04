@@ -1,4 +1,10 @@
 /* orange text on buttons */
+nav{
+  position: fixed;
+  z-index: 10;
+  top:0;
+}
+
 nav ul a:hover {
   color: rgb(255, 166, 0);
 }
@@ -23,6 +29,16 @@ header img{
   right: 0;
   text-align: center;
   z-index: 1;
+}
+
+#top_banner{
+  margin-top: 50px;
+}
+
+#shopping_cart_item{
+  right: 1px;
+  top: 55px;
+  z-index: 10;
 }
 
 span.badge{
@@ -52,6 +68,18 @@ span.badge{
 
 #modal-account, #modal-login, #modal-signup{
   max-width: 350px;
+}
+
+#modal_create_pizza{
+  height: 1400px;;
+}
+
+#pizza_name_input{
+  right: 20px;
+}
+
+.input-field .prefix{
+  margin-left: 5px;
 }
 
 /* proper display of the cards to make them all eqaul no matter of content */
@@ -231,6 +259,14 @@ footer ul li{
 /* --Styling Admin page*/
 
 /* when user loged in to stop displaying some items like sign-up */
+#admin_tabs{
+  margin-top: 60px;
+}
+
+/* #tabs{
+  position: fixed;
+} */
+
 .logged-in{
   display: none;
 }
@@ -277,10 +313,23 @@ footer ul li{
     font-size: 1.5rem;
   }
 
+  nav img{
+    width: 3.7rem;
+    height: 3.7rem;
+    margin: 3px 0 0 -10px
+  }
+
   #logo{
     max-width: 300px;
     max-height: 300px;
    }
+
+   #shopping_cart_item{
+    position: fixed;
+    right: 1px;
+    top: 55px;
+    z-index: 10;
+}
 
   #bake_logo{
     max-width: 300px;

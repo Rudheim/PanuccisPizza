@@ -1,5 +1,5 @@
 import { setupUI } from './Admin'
-import { closeForms } from '../Main/Materialize'
+import { modalClose } from '../Main/Materialize'
 
 const usersDB = db.collection('users');
 
@@ -33,8 +33,7 @@ signupForm.addEventListener('submit', (e) => {
       name: signupForm.nickname.value
     });
   }).then(() => {
-    const close = new closeForms('modal-signup', signupForm);
-    close.modalClose();
+    modalClose('modal-signup', signupForm);
   }).catch(err => console.log(err.message));
 })
 
@@ -47,8 +46,7 @@ loginForm.addEventListener('submit', (e) => {
   const email = loginForm['login-email'].value;
   const password = loginForm['login-password'].value;
   auth.signInWithEmailAndPassword(email, password).then(cred => {
-    const close = new closeForms('modal-login', loginForm);
-    close.modalClose();
+    modalClose('modal-login', loginForm);
   }).catch(err => console.log(err.message));
 })
 
@@ -72,6 +70,5 @@ adminForm.addEventListener('submit', (e) => {
   addAdminRole({email: adminEmail}).then(result => {
     console.log(result);
   })
-  const close = new closeForms('modal-account', adminForm);
-    close.modalClose();
+  modalClose('modal-account', adminForm);
 });

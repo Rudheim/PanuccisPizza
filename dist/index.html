@@ -15,20 +15,24 @@
   <header>
     <nav class="nav grey darken-4">
       <div class="container">
-        <img src="img/logo.png" alt="" class="hide-on-small-only">
-        <a href="#" class="brand-logo">Panucci's Pizza</a>
+        <img src="img/logo.png" alt="">
+        <a href="#" class="brand-logo hide-on-med-and-down">Panucci's Pizza</a>
         <a href="#" class="sidenav-trigger" data-target="mobile-menu">
           <i class="material-icons">menu</i>
         </a>
+        <ul class="right">
+          <li><a class="dropdown-trigger btn btn grey darken-3" href="#!" data-target="dropdown1">
+            <i id="account_icon" class="material-icons">account_circle</i></a>
+          </li>
+          <li class="logged-in" id="greeting">Hi, guest</li>
+          <li class="logged-in" id="shopping_cart_item"><a href="#modal_shopping_cart" class="btn-floating btn green darken-3 modal-trigger">
+            <i class="icons material-icons">shopping_cart</i></a><span class="new badge green darken-3" data-badge-caption="">empty</span>
+          </li>
+        </ul>
         <ul class="right hide-on-med-and-down">
           <li><a href="#menu">Pizzas</a></li>
-          <li><a href="#create-form">Create</a></li>
+          <li><a href="#modal_create_pizza" class="modal-trigger">Create</a></li>
           <li><a href="#contanct">Contacts</a></li>
-          <li class="logged-in"><a href="" class="btn-floating btn green darken-3">
-            <i class="icons material-icons">shopping_cart</i></a><span class="new badge green darken-3" data-badge-caption="">empty</span></li>
-          <li><a class="dropdown-trigger btn btn grey darken-3" href="#!" data-target="dropdown1">
-            <i id="account_icon" class="material-icons">account_circle</i></a></li>
-          <li class="logged-in" id="greeting">Hi, guest</li>
         </ul>
         <ul id="dropdown1" class="dropdown-content">
           <li class="logged-out"><a href="#modal-signup" class="modal-trigger">Sign Up</a></li>
@@ -81,6 +85,69 @@
     </div>
   </div>
 
+<!-- SHOPPING CART MODAL -->
+  <div id="modal_shopping_cart" class="modal">
+    <div class="modal-content center-align">
+      <h4>Your Shopping Cart</h4><br/>
+      <table id="shopping_cart_table" class="highlight">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="shopping_cart_list">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CREATE PIZZA MODAL -->
+  <div id="modal_create_pizza" class="modal bottom-sheet">
+    <div class="modal-content container center">
+      <h4 class="header">Create your OWN Pizza!</h4><br/>
+      <form id="create" name="create_pizza_form">
+        <div class="input-field col s12" id="pizza_name_input">
+          <i class="material-icons prefix right">local_pizza</i>
+          <input id="name" type="text" class="validate" required>
+          <label for="name">Name</label>
+        </div>
+        <div class="center-align">
+        </div>
+        <div class="input-field col s12">
+          <select class="browser-default" required>
+            <option value="" disabled selected>Pizza size</option>
+            <option value="Big">Big</option>
+            <option value="Medium">Medium</option>
+            <option value="Small">Small</option>
+          </select>
+        </div>
+        <button class="waves-effect waves-light btn-small amber darken-4" id="createbtn" type="submit">CREATE PIZZA
+          <i class="material-icons right">add</i>
+        </button>
+      </form>
+
+      <div class="row hidden" id="create_pizza">
+        <div class="input-field col s12 l10 offset-l2">
+          <input id="search" type="text" placeholder="Type to search">
+        </div>
+        <div class="col s12 l5 offset-l1">
+          <ul class="collection z-depth-3" id="ingredients-list"></ul>
+        </div>
+  
+        <div class="col s12 l3 offset-l1">
+          <h4 class="center">Your order:</h4>
+          <ul class="collection z-depth-3 hidden" id="customer-list"></ul>
+          <div class="left">
+            <button class="btn hidden amber darken-4" id="order" >ORDER</button>
+            <span id="total"></span>
+          </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
 <!-- SIGN UP MODAL -->
   <div id="modal-signup" class="modal">
     <div class="modal-content">
@@ -123,7 +190,7 @@
 
 <!-- parallax 1-->
   <img src="img/logo.png" alt="" id="logo">
-  <div class="parallax-container">
+  <div class="parallax-container" id="top_banner">
     <div class="parallax">
       <img src="img/pizza_parabanner1.jpg" alt="" class="responsive-img">
     </div>
@@ -146,57 +213,6 @@
     <h2 class=" white-text center">Create your own pizza!</h2>
   </div>
  
-
-<!-- form create pizza -->
-  <div class="container scrollspy" id="create-form">
-    <div class="row">
-      <form id="create">
-          <div class="input-field col s12">
-            <i class="material-icons prefix">account_circle</i>
-            <input id="name" type="text" class="validate" required>
-            <label for="name">Name</label>
-          </div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix">local_pizza</i>
-            <select required>
-              <option value="" disabled selected>Pizza size</option>
-              <option value="Big">Big</option>
-              <option value="Medium">Medium</option>
-              <option value="Small">Small</option>
-            </select>
-          </div>
-          <div class="center-align">
-            <button class="waves-effect waves-light btn-small amber darken-4" type="submit" id="createbtn">CREATE PIZZA
-              <i class="material-icons right">add</i>
-            </button>
-          </div>
-      </form>
-    </div>
-  </div>
-
-
-<!-- create pizza menu -->
-  <div class="container hidden" id="create_pizza">
-    <div class="row">
-      <div class="input-field col s12 l10 offset-l2">
-        <input id="search" type="text" placeholder="Type to search">
-      </div>
-      <div class="col s12 l5 offset-l1">
-        <ul class="collection z-depth-3" id="ingredients-list"></ul>
-      </div>
-
-      <div class="col s12 l3 offset-l1">
-        <h4 class="center">Your order:</h4>
-        <ul class="collection z-depth-3 hidden" id="customer-list"></ul>
-        <div class="left">
-          <button class="btn hidden amber darken-4" id="order" >ORDER</button>
-          <span id="total"></span>
-        </div>
-        </div>
-      </div>
-  </div>
-
-  
   <!-- contact form and footer -->
   <footer class="page-footer grey darken-3">
     <section class="section container scrollspy" id="contanct">

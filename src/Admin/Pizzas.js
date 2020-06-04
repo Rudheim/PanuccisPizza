@@ -1,5 +1,7 @@
-import { pizzas } from '../Main/PizzasMenu'
-import { closeForms, updateInputFields } from '../Main/Materialize'
+import { modalClose, updateInputFields } from '../Main/Materialize'
+
+
+const pizzas = db.collection('pizzas');
 
 // 
 //--get pizzas from DB and rendering it to the screen in table form
@@ -70,8 +72,7 @@ addform.addEventListener('submit', (e)=> {
     img: img.src,
     description: addform.description.value
   }).then(() => {
-    const close = new closeForms('modal_create', addform);
-    close.modalClose();
+    modalClose('modal_create', addform);
   }).catch(err => {
     console.log(err.message);
   })
@@ -123,8 +124,7 @@ editform.addEventListener('submit', (e)=> {
     img: imgEdit.src,
     description: editform['edit-description'].value
   }).then(() => {
-    const close = new closeForms('modal_edit', editform);
-    close.modalClose();
+    modalClose('modal_edit', editform);
   }).catch(err => {
     console.log(err.message);
   })

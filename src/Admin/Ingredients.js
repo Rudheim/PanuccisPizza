@@ -1,6 +1,7 @@
-import { ingDB } from '../Main/IngList'
-import { closeForms, updateInputFields } from '../Main/Materialize'
+import { modalClose, updateInputFields } from '../Main/Materialize'
 
+
+const ingDB = db.collection('ingredients');
 // 
 //--get pizzas from DB and rendering it to the screen in table form
 const list = document.querySelector('#ing_list');
@@ -39,8 +40,7 @@ addform.addEventListener('submit', (e)=> {
     price: parseInt(addform.ing_price.value),
     description: addform.ing_description.value
   }).then(() => {
-    const close = new closeForms('modal_create_ingredient', addform);
-    close.modalClose();
+    modalClose('modal_create_ingredient', addform);
   }).catch(err => {
     console.log(err.message);
   });
@@ -79,8 +79,7 @@ editform.addEventListener('submit', (e)=> {
     price: parseInt(editform.ing_price_edit.value),
     description: editform.ing_description_edit.value
   }).then(() => {
-    const close = new closeForms('modal_edit_ingredient', editform);
-    close.modalClose();
+    modalClose('modal_edit_ingredient', editform);
   }).catch(err => {
     console.log(err.message);
   });

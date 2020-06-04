@@ -1,4 +1,4 @@
-import { closeForms } from './Materialize'
+import { modalClose } from './Materialize'
 import { setupUI } from './App'
 
 const usersDB = db.collection('users');
@@ -11,13 +11,14 @@ auth.onAuthStateChanged(user => {
         user.admin = idTokenResult.claims.admin;
         usersDB.doc(user.uid).get()
         .then((userdata) => {
-          setupUI(user, userdata);
-        }).catch(err => {
-          console.log(err.message);
-        })    
+          setupUI(user, userdata.data());
+          return user.uid;
+        });  
       }).catch(err => {
         console.log(err.message);
       })
+    } else {
+      setupUI()
     }
 })
 
@@ -32,11 +33,11 @@ signupForm.addEventListener('submit', (e) => {
 
   auth.createUserWithEmailAndPassword(email, password).then(cred => {
     return usersDB.doc(cred.user.uid).set({
-      name: signupForm.nickname.value
+      name: signupForm.nickname.value,
+      shopping_cart: []
     });
   }).then(() => {
-    const close = new closeForms('modal-signup', signupForm);
-    close.modalClose();
+    modalClose('modal-signup', signupForm);
   }).catch(err => console.log(err.message));
 })
 
@@ -49,8 +50,7 @@ loginForm.addEventListener('submit', (e) => {
   const email = loginForm['login-email'].value;
   const password = loginForm['login-password'].value;
   auth.signInWithEmailAndPassword(email, password).then(cred => {
-    const close = new closeForms('modal-login', loginForm);
-    close.modalClose();
+    modalClose('modal-login', loginForm);
   }).catch(err => console.log(err.message));
 })
 
