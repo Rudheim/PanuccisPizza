@@ -8,10 +8,9 @@ const pizzas = db.collection('pizzas');
 const list = document.querySelector('#pizza-list');
 
 const getPizzas = () => {
-pizzas.get()
-      .then((snapshot) => {
+pizzas.onSnapshot((doc) => {
         list.innerHTML = '';
-        snapshot.docs.forEach(pizza => {
+        doc.docs.forEach(pizza => {
           RenderPizzas(pizza);
         });
        });
@@ -136,7 +135,7 @@ pizzaList.addEventListener('click', e => {
   if(e.target.tagName === 'I' && e.target.textContent == 'delete'){
     const posID = e.target.parentElement.parentElement.getAttribute('pizza-id');
     pizzas.doc(posID).delete().then(() => {
-      location.reload();
+      console.log("item deleted");
     }).catch(function(error) {
         console.error("Error removing document: ", error);
     });

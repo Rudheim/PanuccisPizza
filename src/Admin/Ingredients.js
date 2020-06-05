@@ -2,9 +2,19 @@ import { modalClose, updateInputFields } from '../Main/Materialize'
 
 
 const ingDB = db.collection('ingredients');
+
 // 
 //--get pizzas from DB and rendering it to the screen in table form
 const list = document.querySelector('#ing_list');
+
+const getIngList = () => {
+  ingDB.onSnapshot((doc) => {
+          list.innerHTML = "";
+          doc.docs.forEach(ingredient => {
+            renderIngredients(ingredient)
+          });
+        });
+};
 
 const renderIngredients = (ingredient) => {
   let html = `
@@ -16,15 +26,6 @@ const renderIngredients = (ingredient) => {
     </tr>
   `
   list.innerHTML += html;
-};
-
-const getIngList = () => {
-  ingDB.get()
-       .then((snapshot) => {
-          snapshot.docs.forEach(ingredient => {
-            renderIngredients(ingredient)
-          });
-        });
 };
 
 //
@@ -91,7 +92,7 @@ ingList.addEventListener('click', e => {
   if(e.target.tagName === 'I' && e.target.textContent == 'delete'){
     const posID = e.target.parentElement.parentElement.getAttribute('ingredient-id');
     ingDB.doc(posID).delete().then(() => {
-      location.reload();
+      console.log("item deleted")
     }).catch(error => {
         console.error("Error removing document: ", error);
     });

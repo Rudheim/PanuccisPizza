@@ -26,7 +26,7 @@
           </li>
           <li class="logged-in" id="greeting">Hi, guest</li>
           <li class="logged-in" id="shopping_cart_item"><a href="#modal_shopping_cart" class="btn-floating btn green darken-3 modal-trigger">
-            <i class="icons material-icons">shopping_cart</i></a><span class="new badge green darken-3" data-badge-caption="">empty</span>
+            <i class="icons material-icons">shopping_cart</i></a><span class="new badge orange darken-1" data-badge-caption="">empty</span>
           </li>
         </ul>
         <ul class="right hide-on-med-and-down">
@@ -49,7 +49,7 @@
           <li class="admin"><a href="admin.html" class="indigo darken-1">ADMIN</a></li>
           <li class="divider" tabindex="-1"></li>
           <li><a href="#menu">Pizzas</a></li>
-          <li><a href="#create-form">Create</a></li>
+          <li><a href="#modal_create_pizza" class="modal-trigger">Create</a></li>
           <li><a href="#contanct">Contacts</a></li>
           <li class="divider" tabindex="-1"></li>
           <li class="logged-in"><a id="logout">Logout</a></li>
@@ -100,13 +100,18 @@
         <tbody id="shopping_cart_list">
         </tbody>
       </table>
+      <div class="right">
+        <p id="total_cost">Total: </p>
+      </div>
     </div>
   </div>
 
   <!-- CREATE PIZZA MODAL -->
   <div id="modal_create_pizza" class="modal bottom-sheet">
-    <div class="modal-content container center">
-      <h4 class="header">Create your OWN Pizza!</h4><br/>
+    <div class="modal-content">
+      <div class="create_pizza header">
+        <h2 class="white-text center">Create your own pizza!</h2>
+      </div>
       <form id="create" name="create_pizza_form">
         <div class="input-field col s12" id="pizza_name_input">
           <i class="material-icons prefix right">local_pizza</i>
@@ -123,9 +128,11 @@
             <option value="Small">Small</option>
           </select>
         </div>
-        <button class="waves-effect waves-light btn-small amber darken-4" id="createbtn" type="submit">CREATE PIZZA
-          <i class="material-icons right">add</i>
-        </button>
+        <div class="center">
+          <button class="waves-effect waves-light btn-small amber darken-4" id="createbtn" type="submit">CREATE PIZZA
+            <i class="material-icons right">add</i>
+          </button>
+        </div>
       </form>
 
       <div class="row hidden" id="create_pizza">
@@ -190,7 +197,7 @@
 
 <!-- parallax 1-->
   <img src="img/logo.png" alt="" id="logo">
-  <div class="parallax-container" id="top_banner">
+  <div class="parallax-container" id="top_background">
     <div class="parallax">
       <img src="img/pizza_parabanner1.jpg" alt="" class="responsive-img">
     </div>
@@ -208,9 +215,6 @@
     <div class="parallax">
       <img src="img/pizza_parabanner2.jpg" alt="" class="responsive-img">
     </div>
-  </div>
-  <div class="create_pizza">
-    <h2 class=" white-text center">Create your own pizza!</h2>
   </div>
  
   <!-- contact form and footer -->

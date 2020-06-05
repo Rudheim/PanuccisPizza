@@ -32,13 +32,16 @@ signupForm.addEventListener('submit', (e) => {
   const password = signupForm['signup-password'].value;
 
   auth.createUserWithEmailAndPassword(email, password).then(cred => {
-    return usersDB.doc(cred.user.uid).set({
+     usersDB.doc(cred.user.uid).set({
       name: signupForm.nickname.value,
       shopping_cart: []
     });
+    usersDB.doc(cred.user.uid).collection('user_orders').doc('self_made_pizza').set({
+      ingredients: []
+    })
   }).then(() => {
-    modalClose('modal-signup', signupForm);
-  }).catch(err => console.log(err.message));
+      modalClose('modal-signup', signupForm);
+    }).catch(err => console.log(err.message));
 })
 
 //

@@ -1,41 +1,27 @@
 import { usersDB } from './AuthMain'
-import { profileID } from './ShoppingCart'
+import { profileID, ordersDB } from './ShoppingCart'
 
+
+const ingDB = db.collection('ingredients');
+
+//
+//--Rendering ingredients list to the screen
+const ing_list = document.querySelector('#ingredients-list');
+
+const getIng = () => {
+  ingDB.get()
+       .then((snapshot) => {
+          snapshot.docs.forEach(ingredient => {
+            renderIngredients(ingredient)
+          });
+        });
+};
 
 const create = document.querySelector('#create');
 const name = document.querySelector('#name');
 const create_pizza_modal = document.querySelector('#modal_create_pizza')
 const create_pizza = document.querySelector('#create_pizza');
 const size = document.querySelector('select');
-
-//
-//---creating new documentin DB to store order details and retrieving uniqe id for each order
-create.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  getIng();
-
-  const now = new Date();
-  usersDB.doc(profileID.value).collection('users_orders').add({
-      created_at: firebase.firestore.Timestamp.fromDate(now),
-      title: name.value,
-      size: size.value,
-      ingredients: ''
-  }).then((docRef) => {
-    console.log(" Order created with ID: ", docRef.id);
-  }).catch(function(error) {
-    console.error("Error adding document: ", error);
-});
-
-  create.classList.add('hidden');
-  create_pizza.classList.remove('hidden');
-  create_pizza_modal.style.maxHeight = "80%";
-
-  
-})
-
-const ing_list = document.querySelector('#ingredients-list');
-const ingDB = db.collection('ingredients');
 
 function renderIngredients(ingredient){
 
@@ -48,25 +34,67 @@ let html = `<a ingredient-id="${ingredient.id}" class="collection-item">
   ing_list.innerHTML += html
 }
 
-//getting data from db
-const getIng = () => {
-  ingDB.get()
-       .then((snapshot) => {
-          snapshot.docs.forEach(ingredient => {
-            renderIngredients(ingredient)
-          });
-        });
-};
+//
+//---owerwriting document DB to store order details
+create.addEventListener('submit', (e) => {
+  e.preventDefault();
 
+  getIng();
 
-let ordersDB = db.collection('orders')
+  const now = new Date();
+
+  usersDB.doc(profileID.value).collection('user_orders').doc('self_made_pizza').set({
+      created_at: firebase.firestore.Timestamp.fromDate(now),
+      title: name.value,
+      size: size.value,
+      ingredients: []
+  }).then((docRef) => {
+    console.log('Order created with ID');
+  }).catch(function(error){
+    console.error('Error adding document', error);
+});
+  create.classList.add('hidden');
+  create_pizza.classList.remove('hidden');
+  create_pizza_modal.style.maxHeight = "80%";
+})
 
 let list = document.querySelector('#customer-list');
 let total = document.querySelector('#total');
-let orderBTN = document.querySelector('#order');
+
+//
+//--rendering user chosen ingredients
+function getList(){
+  usersDB.doc(profileID.value).collection('user_orders').doc('self_made_pizza').onSnapshot((doc) => {
+      render(doc.data());
+    });
+  }
+
+//--choosing disered ingredients and adding them to the ordersDB
+ing_list.addEventListener('click', (e) => {
+  if(e.target.nodeName !== 'UL'){
+    let id = e.target.getAttribute('ingredient-id');
+
+    db.runTransaction((transaction) => {
+      return transaction.get(usersDB.doc(profileID.value).collection('user_orders').doc('self_made_pizza'))
+      .then((self_made_pizza) => {
+        return transaction.get(ingDB.doc(id))
+        .then((ingredient) => {
+          let user_ing = self_made_pizza.data().ingredients;
+          let newitem = ingredient.data().name + ', ' + ingredient.data().price;
+          user_ing.push(newitem);
+          transaction.update(usersDB.doc(profileID.value).collection('user_orders').doc('self_made_pizza'), {ingredients: user_ing});
+        }).then(() => {
+          getList();
+        }).catch(err => {
+          console.log(err.message);
+        });
+      })
+    })
+  }
+});
 
 function render(data){
-  list.innerHTML = ""; //deleting all inside the list to put newly generated list, otherwise it will stuck on each other
+  list.innerHTML = ""; 
 
   let prices = [];
   let pos = 0;
@@ -74,7 +102,7 @@ function render(data){
   //after deleting last ingredient array is empty and rest of the code doesn't fire, so we clearing the field where total cost displayed
   if(data.ingredients.length === 0){   
     total.textContent = '';
-    orderBTN.classList.add('hidden');
+    order_pizza_button.classList.add('hidden');
   }
 
   data.ingredients.forEach((ingredient) => {
@@ -93,62 +121,61 @@ function render(data){
 
     list.innerHTML += html;
     pos++;
-    
     total.textContent = prices.reduce((a, b) => a + b, 0) + '$'; //calculating sum of all ordered ingredients
-    orderBTN.classList.remove('hidden');
+    order_pizza_button.classList.remove('hidden');
     list.classList.remove('hidden');
-
   })
+  //creating a field ih the document with total sum, to add it later to shopping cart(reduces perfomance greatly!)
+  usersDB.doc(profileID.value).collection('user_orders').doc('self_made_pizza')
+    .update({
+      total: prices.reduce((a, b) => a + b, 0)
+    })
 }
 
-function getList(id){
-    ordersDB.doc(id).onSnapshot((doc) => {
-      render(doc.data());
-    });
-  }
+//
+//--ordering selfmadepizza
+const order_pizza_button = document.querySelector('#order');
 
-  let orderID = '';
+order_pizza_button.addEventListener('click', e => {
+  e.preventDefault();
 
-  
-  //
-  //---deleting ingredient and deleting it from ordersDB
-  list.addEventListener('click', e => {
-    if(e.target.tagName === 'I'){
-       const posID = e.target.parentElement.getAttribute('position-id');
-  
-        ordersDB.doc(orderID)
-          .get()
-          .then((doc) => {
-            let ingArr = doc.data().ingredients; //to delete ingredient from DB we are getting array of existing in ingredients..
-            ingArr.splice(ingArr.indexOf(ingArr[posID]), 1); //...and deleting it from array using custom index that we created for each element...
-            ordersDB.doc(orderID).update({
-              ingredients: ingArr //...and updating DB with new array of ingredients
-            }).then(() => {
-              getList(orderID);
-            })
-        })
-      }
+  db.runTransaction(transaction => {
+    return transaction.get(usersDB.doc(profileID.value))
+    .then(user => {
+      return transaction.get(usersDB.doc(profileID.value).collection('user_orders').doc('self_made_pizza'))
+      .then((pizza) => {
+        let new_pizza = 'Custom ' + pizza.data().size + ' ' + pizza.data().title + ', ' + pizza.data().total + ', ' + pizza.data().ingredients;
+      transaction.update(usersDB.doc(profileID.value), {shopping_cart: firebase.firestore.FieldValue.arrayUnion(new_pizza)})
+      }).then(() =>{
+        create.classList.remove('hidden');
+        create_pizza.classList.add('hidden');
+        create_pizza_modal.style.maxHeight = "";
+      }).catch(err => {
+        console.log(err.message);
+      });
+    })
   })
-
-
+})
 
 //
-//--choosing disered ingredients and adding them to the ordersDB
-ing_list.addEventListener('click', (e) => {
-  if(e.target.nodeName !== 'UL'){
-    let id = e.target.getAttribute('ingredient-id');
+//---deleting ingredient and deleting it from ordersDB
+list.addEventListener('click', e => {
+  if(e.target.tagName === 'I'){
+      const posID = e.target.parentElement.getAttribute('position-id');
 
-    ingDB.doc(id)
-          .get()
-          .then((ingredient) => {
-          ordersDB.doc(orderID).update({
-            ingredients: firebase.firestore.FieldValue.arrayUnion(ingredient.data().name + ', ' + ingredient.data().price)
+      usersDB.doc(profileID.value).collection('user_orders').doc('self_made_pizza')
+        .get()
+        .then((doc) => {
+          let ingArr = doc.data().ingredients; //to delete ingredient from DB we are getting array of existing in ingredients..
+          ingArr = ingArr.filter((item, index) => item[index] !== item[posID])
+          usersDB.doc(profileID.value).collection('user_orders').doc('self_made_pizza').update({
+            ingredients: ingArr //...and updating DB with new array of ingredients
           }).then(() => {
-            getList(orderID);
+            getList();
           })
-      });
-  }
-});
+      })
+    }
+})
 
 //
 //---searching ingredients, when typing it filters ingredients by letters we are typing

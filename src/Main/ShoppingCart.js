@@ -1,6 +1,7 @@
 import { menu, pizzas } from './PizzasMenu'
 import { usersDB } from './AuthMain'
 
+const ordersDB = db.collection('orders');
 
 const shopping_cart_table = document.querySelector('#shopping_cart_table');
 const shopping_cart_list = document.querySelector('#shopping_cart_list');
@@ -12,19 +13,22 @@ const profileID = document.querySelector('#profile_id'); //this element value is
 //--renderning shopping cart content in the modal
 function get_shopping_cart(user_id){
   usersDB.doc(user_id).onSnapshot((doc) => {
-    render_shopping_cart(doc.data());
+      render_shopping_cart(doc.data());
   });
 }
 
+const total_cost = document.querySelector('#total_cost');
+
 function render_shopping_cart(userData){
 
+  let prices = [];
   let pos = 0; //giving each list item an ID that correspondes with position of this item in array and itereting it in for each loop
   shopping_cart_list.innerHTML = ''; //clearing fields for live update. Without it newly generated list will be added to the existing one
-  shopping_cart_count.textContent = userData.shopping_cart.length; //display how much items we have in the shopping cart
 
-  if(userData.shopping_cart.length === 0){   
+  if(!userData.shopping_cart == undefined){   
     shopping_cart_table.style.display = 'none';
   }else{
+    shopping_cart_count.textContent = userData.shopping_cart.length; //display how much items we have in the shopping cart
     shopping_cart_table.style.display = 'table';
     userData.shopping_cart.forEach(item => {
 
@@ -38,6 +42,8 @@ function render_shopping_cart(userData){
       </tr>
       `;
       pos++; 
+      prices.push(parseInt(title_price[1])) //pushing cost of each ingredient into array
+      total_cost.textContent = 'Total: ' + prices.reduce((a, b) => a + b, 0) + ' $'; //calculating sum of all ordered ingredients
       shopping_cart_list.innerHTML += html;
     });
   }
@@ -76,7 +82,8 @@ shopping_cart_list.addEventListener('click', e => {
       return transaction.get(usersDB.doc(profileID.value))
       .then(user => {
         let shopping_cart_list = user.data().shopping_cart;
-        shopping_cart_list.splice(shopping_cart_list.indexOf(shopping_cart_list[posID]), 1);
+        shopping_cart_list = shopping_cart_list.filter((item, index)=> item[index] !== item[posID]);
+        //shopping_cart_list.splice(shopping_cart_list.indexOf(shopping_cart_list[posID]), 1);
         transaction.update(usersDB.doc(profileID.value), {shopping_cart: shopping_cart_list});
       }).then(() => {
         get_shopping_cart(profileID.value);
@@ -87,4 +94,4 @@ shopping_cart_list.addEventListener('click', e => {
   }
 })
 
-export { shopping_cart_count, get_shopping_cart, profileID }
+export { shopping_cart_count, get_shopping_cart, profileID, ordersDB }
