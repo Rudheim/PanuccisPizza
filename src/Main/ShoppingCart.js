@@ -1,6 +1,7 @@
 import { menu, pizzas } from './PizzasMenu'
 import { usersDB } from './AuthMain'
 
+
 const ordersDB = db.collection('orders');
 
 const shopping_cart_table = document.querySelector('#shopping_cart_table');
@@ -13,40 +14,49 @@ const profileID = document.querySelector('#profile_id'); //this element value is
 //--renderning shopping cart content in the modal
 function get_shopping_cart(user_id){
   usersDB.doc(user_id).onSnapshot((doc) => {
-      render_shopping_cart(doc.data());
+      render_shopping_cart(doc);
   });
 }
 
 const total_cost = document.querySelector('#total_cost');
+const checkout = document.querySelector('#checkout');
 
-function render_shopping_cart(userData){
+function render_shopping_cart(doc){
 
   let prices = [];
   let pos = 0; //giving each list item an ID that correspondes with position of this item in array and itereting it in for each loop
   shopping_cart_list.innerHTML = ''; //clearing fields for live update. Without it newly generated list will be added to the existing one
 
-  if(!userData.shopping_cart == undefined){   
+  if(doc.get('shopping_cart') == null){   
     shopping_cart_table.style.display = 'none';
   }else{
-    shopping_cart_count.textContent = userData.shopping_cart.length; //display how much items we have in the shopping cart
-    shopping_cart_table.style.display = 'table';
-    userData.shopping_cart.forEach(item => {
+      checkout.classList.remove('hidden');
+      shopping_cart_count.textContent = doc.data().shopping_cart.length; //display how much items we have in the shopping cart
+      shopping_cart_table.style.display = 'table';
+      doc.data().shopping_cart.forEach(item => {
 
-      let title_price = item.split(', ') //splitting array item to have seperate variables for the title and price
-  
-      let html =  `
-      <tr position-id="${pos}">
-        <td>${title_price[0]}</td>
-        <td>${title_price[1]}</td>
-        <td><i class="material-icons delete red-text darken-1-text">delete</i></td>
-      </tr>
-      `;
-      pos++; 
-      prices.push(parseInt(title_price[1])) //pushing cost of each ingredient into array
-      total_cost.textContent = 'Total: ' + prices.reduce((a, b) => a + b, 0) + ' $'; //calculating sum of all ordered ingredients
-      shopping_cart_list.innerHTML += html;
-    });
-  }
+        let title_price = item.split(', ') //splitting array item to have seperate variables for the title and price
+    
+        let html =  `
+        <tr position-id="${pos}">
+          <td>${title_price[0]}</td>
+          <td>${title_price[1]}</td>
+          <td><i class="material-icons delete red-text darken-1-text">delete</i></td>
+        </tr>
+        `;
+        pos++; 
+        prices.push(parseInt(title_price[1])) //pushing cost of each ingredient into array
+        //total_cost.textContent = 'Total: ' + prices.reduce((a, b) => a + b, 0) + ' $'; //calculating sum of all ordered ingredients
+        shopping_cart_list.innerHTML += html;
+      });
+      total_cost.textContent = 'Total: ' + prices.reduce((a, b) => a + b, 0) + ' $'; 
+      //changing intarface if shopping car is empty
+      if(doc.data().shopping_cart.length == 0){
+        checkout.classList.add('hidden');
+        total_cost.textContent = 'Your shopping cart is empty';
+        shopping_cart_table.style.display = 'none';
+      }
+    }
 }
 
 //
@@ -88,10 +98,35 @@ shopping_cart_list.addEventListener('click', e => {
       }).then(() => {
         get_shopping_cart(profileID.value);
       }).catch(err => {
-        console.log(err.message)
+        console.log(err.message);
       })
       })
   }
 })
+
+//
+//--submiting the users order and addint it to his order history
+checkout.addEventListener('click', e => {
+  e.preventDefault();
+
+  db.runTransaction(transaction => {
+    return transaction.get(usersDB.doc(profileID.value))
+    .then(user => {
+      const date = new Date();
+      let prices = [];
+      user.data().shopping_cart.forEach(item => {
+        let title_price = item.split(', ');
+        prices.push(parseInt(title_price[1]));
+      });
+      transaction.set(usersDB.doc(profileID.value).collection('user_orders').doc(), {date: date, order: user.data().shopping_cart, total_cost: prices.reduce((a, b) => a + b, 0)});
+      transaction.update(usersDB.doc(profileID.value), {shopping_cart: []});
+      transaction.set(ordersDB.doc(), {user_id: profileID.value, order: user.data().shopping_cart, name: user.data().name, status: 'order-recived', date: date, total_cost: prices.reduce((a, b) => a + b, 0)});
+    }).then(() => {
+      get_shopping_cart(profileID.value);
+      console.log('Thank you for your order');
+    })
+  })
+})
+
 
 export { shopping_cart_count, get_shopping_cart, profileID, ordersDB }

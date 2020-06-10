@@ -57,7 +57,10 @@
       </ul>
     </div>
     <!-- ORDERS TAB -->
-    <div id="orders" class="col s12"></div>
+    <div id="orders" class="col s12">
+      <ul class="collapsible" id="order_list"></ul>
+    </ul>
+    </div>
     <!-- PIZZAS TAB -->
     <div id="pizzas" class="col s12">
       <div class="container center addbtn">
@@ -336,6 +339,7 @@
   const functions = firebase.functions();
   const storage = firebase.storage();
 </script>
+ <script src="http://cdn.date-fns.org/v1.9.0/date_fns.min.js"></script>
  <script src="assets/adminApp.bundle.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>

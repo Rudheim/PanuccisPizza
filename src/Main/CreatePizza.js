@@ -1,5 +1,6 @@
 import { usersDB } from './AuthMain'
-import { profileID, ordersDB } from './ShoppingCart'
+import { profileID } from './ShoppingCart'
+import { modalClose } from './Materialize'
 
 
 const ingDB = db.collection('ingredients');
@@ -150,6 +151,7 @@ order_pizza_button.addEventListener('click', e => {
         create.classList.remove('hidden');
         create_pizza.classList.add('hidden');
         create_pizza_modal.style.maxHeight = "";
+        modalClose('modal_create_pizza', create)
       }).catch(err => {
         console.log(err.message);
       });

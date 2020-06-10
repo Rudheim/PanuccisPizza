@@ -70,4 +70,9 @@ document.addEventListener('DOMContentLoaded', function() {
   var instances = M.Dropdown.init(elems, dropdownOptions);
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.collapsible');
+  var instances = M.Collapsible.init(elems);
+});
+
 export { modalClose, pulse, updateInputFields }

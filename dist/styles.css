@@ -177,6 +177,16 @@ i{
   max-width: 350px;
 }
 
+#checkout{
+  margin-left: 20px;
+  top: -5px;
+}
+
+#total_cost{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 /* ____CREATE PIZZA MODAL____ */
 #modal_create_pizza{
   height: 1400px;
@@ -327,6 +337,27 @@ i{
 }
 .tabs .tab a:hover, .tabs .tab a.active{
   color: #e65100;
+}
+
+.collapsible-header {
+  display: block;
+}
+
+#order_list li{
+  margin-left: 10px;
+}
+
+.bold_font{
+  font-weight: bold;
+}
+
+.underline{
+  text-decoration: underline;
+}
+
+#order_list a{
+  margin-top: -5px;
+  margin-left: 5px;
 }
 
 

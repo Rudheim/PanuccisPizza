@@ -89,6 +89,10 @@
   <div id="modal_shopping_cart" class="modal">
     <div class="modal-content center-align">
       <h4>Your Shopping Cart</h4><br/>
+      <div class="right">
+        <span id="total_cost">Your shopping cart is empty</span>
+        <button class="waves-effect waves-light btn-small green darken-1 hidden" id="checkout">PLACE YOUR ORDER</button>
+      </div>
       <table id="shopping_cart_table" class="highlight">
         <thead>
           <tr>
@@ -100,9 +104,6 @@
         <tbody id="shopping_cart_list">
         </tbody>
       </table>
-      <div class="right">
-        <p id="total_cost">Total: </p>
-      </div>
     </div>
   </div>
 

@@ -2,6 +2,7 @@ import './Auth'
 
 import { getPizzas } from './Pizzas'
 import { getIngList } from './Ingredients'
+import { getOrders } from  './Orders'
 
 //
 //--changing UI acording to type of person logged in
@@ -38,6 +39,7 @@ class LoginUI{
     this.adminItems.forEach(item => item.style.display = 'block');
     getPizzas();
     getIngList();
+    getOrders();
   }
   logedOut(){
     location.reload();
