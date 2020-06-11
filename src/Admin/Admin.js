@@ -3,6 +3,7 @@ import './Auth'
 import { getPizzas } from './Pizzas'
 import { getIngList } from './Ingredients'
 import { getOrders } from  './Orders'
+import { getUsers } from  './Users'
 
 //
 //--changing UI acording to type of person logged in
@@ -40,6 +41,7 @@ class LoginUI{
     getPizzas();
     getIngList();
     getOrders();
+    getUsers();
   }
   logedOut(){
     location.reload();

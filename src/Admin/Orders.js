@@ -1,3 +1,5 @@
+import { format, formatDistanceToNow } from 'date-fns'
+
 const ordersDB = db.collection('orders');
 
 // 
@@ -23,8 +25,8 @@ const getOrders = () => {
     (detail.includes("Custom") ? custom_pizzas : pizzas).push(detail)
     })
 
-    const when = dateFns.distanceInWordsToNow(order.data().date.toDate(), {addSuffix: true});
-    const exact_time = dateFns.format(order.data().date.toDate(), "DD/MM/YYYY HH:mm:ss");
+    const when = formatDistanceToNow(order.data().date.toDate(), {addSuffix: true});
+    const exact_time = format(order.data().date.toDate(), "dd/mm/yyyy hh:mm:ss");
     let text_style = 'light-blue-text text-accent-3';
     let btn_style = 'blue';
     if(order.data().status == "order-completed"){
@@ -58,7 +60,7 @@ const getOrders = () => {
 }
 
 order_list.addEventListener('click', e => {
-  if(e.target.tagName === 'I'){
+  if(e.target.tagName === 'I' && e.target.parentElement.classList.contains('blue')){
     const posID = e.target.parentElement.parentElement.parentElement.getAttribute('order-id');
     ordersDB.doc(posID).update({
       status: 'order-completed'

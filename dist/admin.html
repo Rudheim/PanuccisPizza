@@ -98,7 +98,18 @@
       </table>
     </div>
     <!-- USERS TAB -->
-    <div id="users" class="col s12"></div>
+    <div id="users" class="col s12">
+      <table id="users_list" class="highlight">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>ID</th>
+          </tr>
+        </thead>
+        <tbody id="user-list">
+        </tbody>
+      </table>
+    </div>
   </div>
   </div> 
 
@@ -316,6 +327,13 @@
       </form>
     </div>
   </div>
+
+  <!-- USER MODAL -->
+  <div id="modal_user" class="modal">
+    <div class="modal-content">
+      <ul class="collapsible" id="user_order_list"></ul>
+    </div>
+  </div>
   
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
@@ -339,7 +357,7 @@
   const functions = firebase.functions();
   const storage = firebase.storage();
 </script>
- <script src="http://cdn.date-fns.org/v1.9.0/date_fns.min.js"></script>
+ <!-- <script src="http://cdn.date-fns.org/v1.9.0/date_fns.min.js"></script> -->
  <script src="assets/adminApp.bundle.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
