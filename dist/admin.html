@@ -20,40 +20,36 @@
         <i class="material-icons">menu</i>
       </a>
       <ul class="right hide-on-med-and-down">
-        <li class="logged-in"><a href="" class="btn-floating btn green darken-3">
-          <i class="icons material-icons">shopping_cart</i></a></li>
-        <li><a class="dropdown-trigger btn btn grey darken-3" href="#!" data-target="dropdown1">
-          <i id="account_icon" class="material-icons">account_circle</i></a></li>
+        <li><a class="dropdown-trigger btn btn grey darken-3" href="#!" data-target="account_menu">
+          <i id="account_icon" class="material-icons">person</i></a></li>
         <li class="logged-in" id="greeting">Hi, guest</li>
       </ul>
-      <ul id="dropdown1" class="dropdown-content">
-        <li class="logged-out"><a href="#modal-signup" class="modal-trigger">Sign Up</a></li>
-        <li class="logged-out"><a href="#modal-login"  class="modal-trigger">Login</a></li>
-        <li class="logged-in"><a href="#modal-account" class="modal-trigger">Profile</a></li>
+      <ul id="account_menu" class="dropdown-content">
+        <li class="logged-out"><a href="#modal-signup" class="modal-trigger"><i class="material-icons">assignment</i>Sign Up</a></li>
+        <li class="logged-out"><a href="#modal-login"  class="modal-trigger"><i class="material-icons">assignment_ind</i>Login</a></li>
+        <li class="logged-in"><a href="#modal-account" class="modal-trigger"><i class="material-icons">account_circle</i>Profile</a></li>
         <li class="divider" tabindex="-1"></li>
-        <li class="logged-in"><a id="logout">Logout</a></li>
-        <li class="admin"><a href="admin.html" class="indigo darken-3">ADMIN</a></li>
+        <li class="logged-in"><a id="logout"><i class="material-icons">exit_to_app</i>Logout</a></li>
       </ul>
       <ul class="sidenav" id="mobile-menu">
-        <li class="logged-out"><a href="#modal-signup" class="modal-trigger">Sign Up</a></li>
-        <li class="logged-out"><a href="#modal-login"  class="modal-trigger">Login</a></li>
-        <li class="logged-in"><a href="#modal-account" class="modal-trigger">Profile</a></li>
-        <li class="logged-in"><a id="logout">Logout</a></li>
+        <li class="logged-out"><a href="#modal-signup" class="modal-trigger"><i class="material-icons">assignment</i>Sign Up</a></li>
+        <li class="logged-out"><a href="#modal-login"  class="modal-trigger"><i class="material-icons">assignment_ind</i>Login</a></li>
+        <li class="logged-in"><a href="#modal-account" class="modal-trigger"><i class="material-icons">account_circle</i>Profile</a></li>
+        <li class="logged-in"><a id="logout"><i class="material-icons">exit_to_app</i>Logout</a></li>
       </ul>
     </div>
   </nav>
 </header>
 
 <!-- Admin Tabs -->
-  <div class="container admin" id="admin_tabs">
+<div class="container admin" id="admin_tabs">
   <div class="row">
     <div class="col s12">
       <!-- TABS -->
       <ul class="tabs" id="tabs">
-        <li class="tab col s3"><a href="#orders">Order</a></li>
-        <li class="tab col s3"><a href="#pizzas">Pizzas</a></li>
-        <li class="tab col s3"><a href="#ingredients">Ingredients</a></li>
-        <li class="tab col s3"><a href="#users">Users</a></li>
+        <li class="tab col s4"><a href="#orders">Orders</a></li>
+        <li class="tab col s4"><a href="#pizzas">Pizzas</a></li>
+        <li class="tab col s4"><a href="#users">Users</a></li>
       </ul>
     </div>
     <!-- ORDERS TAB -->
@@ -79,24 +75,6 @@
         </tbody>
       </table>
     </div>
-    <!-- INGEDIENTS TAB -->
-    <div id="ingredients" class="col s12">
-      <div class="container center addbtn">
-        <a href="#modal_create_ingredient" class="waves-effect waves-light btn-small green darken-1 modal-trigger">ADD NEW INGREDIENT<i class="material-icons right">add</i></a>
-      </div>
-      <table id="IngredientList" class="highlight">
-        <thead>
-          <tr>
-            <th>Edit</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody id="ing_list">
-        </tbody>
-      </table>
-    </div>
     <!-- USERS TAB -->
     <div id="users" class="col s12">
       <table id="users_list" class="highlight">
@@ -111,7 +89,7 @@
       </table>
     </div>
   </div>
-  </div> 
+</div> 
 
 <!-- SIGN UP MODAL -->
   <div id="modal-signup" class="modal">
@@ -268,61 +246,6 @@
               </div>
             </div>
         </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-<!-- ADD INGREDIENT MODAL -->
-  <div id="modal_create_ingredient" class="modal">
-    <div class="modal-content">
-      <form id="addIngredientForm">
-        <div class="center">
-        <button type="submit" class="waves-effect waves-light btn green darken-1">ADD INGREDIENT<i class="material-icons right">add</i></button>
-        </div>
-        <div class="row">
-          <div class="input-field col s12 m8">
-            <textarea id="ing_name" class="materialize-textarea" required></textarea>
-            <label for="ing_name">Title</label>
-          </div>
-          <div class="input-field col s7 l4">
-            <textarea id="ing_price" class="materialize-textarea" required></textarea>
-            <label for="ing_price">Price</label>
-          </div>
-          <div class="input-field col s12">
-            <textarea id="ing_description" class="materialize-textarea" required></textarea>
-            <label for="ing_description">Description</label>
-          </div> 
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- EDIT INGREDIENT MODAL -->
-  <div id="modal_edit_ingredient" class="modal">
-    <div class="modal-content">
-      <form id="editIngredientForm">
-        <div class="center">
-        <button type="submit" class="waves-effect waves-light btn green darken-1">EDIT INGREDIENT<i class="material-icons right">edit</i></button>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input disabled value="" id="disabled_ing" type="text" class="validate">
-            <label for="disabled_ing">Ingredient-ID</label>
-          </div>
-          <div class="input-field col s12 m8">
-            <textarea id="ing_name_edit" class="materialize-textarea" required></textarea>
-            <label for="ing_name_edit">Title</label>
-          </div>
-          <div class="input-field col s7 l4">
-            <textarea id="ing_price_edit" class="materialize-textarea" required></textarea>
-            <label for="ing_price_edit">Price</label>
-          </div>
-          <div class="input-field col s12">
-            <textarea id="ing_description_edit" class="materialize-textarea" required></textarea>
-            <label for="ing_descriptio_editn">Description</label>
-          </div> 
-          </div>
         </div>
       </form>
     </div>

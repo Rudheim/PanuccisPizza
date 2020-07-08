@@ -1,5 +1,4 @@
 import './AuthMain'
-import './CreatePizza'
 
 import { getPizzas } from './PizzasMenu'
 import { shopping_cart_count, get_shopping_cart} from './ShoppingCart'
@@ -38,7 +37,7 @@ function logedIn(loggedUser, userdata){
   user_profile.profile_id.value = loggedUser.uid;
   user_profile.profile_name.value = userdata.name;
   user_profile.profile_email.value = loggedUser.email;
-  accountDetails.value = loggedUser.admin ? 'Admin' : 'User';
+  accountDetails.textContent = loggedUser.admin ? 'Admin' : 'User';
   M.updateTextFields();
   greeting_msg.textContent = `Hi, ${userdata.name}`;
   shopping_cart_count.textContent = userdata.shopping_cart.length;

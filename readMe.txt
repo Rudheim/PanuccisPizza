@@ -1,0 +1,1 @@
+-images of the pizzas for cards menu should be 400x400

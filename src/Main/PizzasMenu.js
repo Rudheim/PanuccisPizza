@@ -7,6 +7,8 @@ const menu = document.querySelector('#menu');
 
 function renderMenu(pizza){
 
+  const vegan = pizza.data().vegan ? ('green lighten-1') : ('orange lighten-1');
+
   let html = ` 
   <div class="col s12 m6 l3">
     <div pizza-id="${pizza.id}" class="card" style="overflow: hidden;">
@@ -21,8 +23,8 @@ function renderMenu(pizza){
       <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>${pizza.data().title}</span>
       <p>${pizza.data().description}</p>
     </card-reveal>
-    <div class="card-action">
-      <p class="center-align">${pizza.data().price} $</p>
+    <div class="card-action ${vegan}">
+      <p class="center-align">${pizza.data().price} NOK</p>
     </div>
     </div>
   </div>

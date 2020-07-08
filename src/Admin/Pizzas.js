@@ -72,6 +72,7 @@ addform.addEventListener('submit', (e)=> {
     description: addform.description.value
   }).then(() => {
     modalClose('modal_create', addform);
+    img.src = '';
   }).catch(err => {
     console.log(err.message);
   })

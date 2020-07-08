@@ -12,10 +12,14 @@ auth.onAuthStateChanged(user => {
         user.admin = idTokenResult.claims.admin;
         usersDB.doc(user.uid).get()
         .then((userdata) => {
-          setupUI(user, userdata);
-          //console.log(userdata.data().name, user)
-        });    
+          setupUI(user, userdata.data());
+          return user.uid;
+        });  
+      }).catch(err => {
+        console.log(err.message);
       })
+    } else {
+      setupUI()
     }
 })
 

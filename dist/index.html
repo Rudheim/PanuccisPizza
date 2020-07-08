@@ -21,38 +21,36 @@
           <i class="material-icons">menu</i>
         </a>
         <ul class="right">
-          <li><a class="dropdown-trigger btn btn grey darken-3" href="#!" data-target="dropdown1">
-            <i id="account_icon" class="material-icons">account_circle</i></a>
+          <li><a class="dropdown-trigger btn btn grey darken-3" data-target="account_menu">
+            <i id="account_icon" class="material-icons">person</i></a>
           </li>
-          <li class="logged-in" id="greeting">Hi, guest</li>
+          <li id="greeting">Hi, guest</li>
           <li class="logged-in" id="shopping_cart_item"><a href="#modal_shopping_cart" class="btn-floating btn green darken-3 modal-trigger">
             <i class="icons material-icons">shopping_cart</i></a><span class="new badge orange darken-1" data-badge-caption="">empty</span>
           </li>
         </ul>
         <ul class="right hide-on-med-and-down">
           <li><a href="#menu">Pizzas</a></li>
-          <li><a href="#modal_create_pizza" class="modal-trigger">Create</a></li>
           <li><a href="#contanct">Contacts</a></li>
         </ul>
-        <ul id="dropdown1" class="dropdown-content">
-          <li class="logged-out"><a href="#modal-signup" class="modal-trigger">Sign Up</a></li>
-          <li class="logged-out"><a href="#modal-login"  class="modal-trigger">Login</a></li>
-          <li class="logged-in"><a href="#modal-account" class="modal-trigger">Profile</a></li>
+        <ul id="account_menu" class="dropdown-content">
+          <li class="logged-out"><a href="#modal-signup" class="modal-trigger"><i class="material-icons">assignment</i>Sign Up</a></li>
+          <li class="logged-out"><a href="#modal-login"  class="modal-trigger"><i class="material-icons">assignment_ind</i>Login</a></li>
+          <li class="logged-in"><a href="#modal-account" class="modal-trigger"><i class="material-icons">account_circle</i>Profile</a></li>
           <li class="divider" tabindex="-1"></li>
-          <li class="logged-in"><a id="logout">Logout</a></li>
-          <li class="admin"><a href="admin.html" class="indigo darken-3">ADMIN</a></li>
+          <li class="logged-in"><a id="logout"><i class="material-icons">exit_to_app</i>Logout</a></li>
+          <li class="admin"><a href="admin.html" class="indigo darken-3"><i class="material-icons">priority_high</i>ADMIN</a></li>
         </ul>
         <ul class="sidenav" id="mobile-menu">
-          <li class="logged-out"><a href="#modal-signup" class="modal-trigger">Sign Up</a></li>
-          <li class="logged-out"><a href="#modal-login"  class="modal-trigger">Login</a></li>
-          <li class="logged-in"><a href="#modal-account" class="modal-trigger">Profile</a></li>
-          <li class="admin"><a href="admin.html" class="indigo darken-1">ADMIN</a></li>
+          <li class="logged-out"><a href="#modal-signup" class="modal-trigger"><i class="material-icons">assignment</i>Sign Up</a></li>
+          <li class="logged-out"><a href="#modal-login"  class="modal-trigger"><i class="material-icons">assignment_ind</i>Login</a></li>
+          <li class="logged-in"><a href="#modal-account" class="modal-trigger"><i class="material-icons">account_circle</i>Profile</a></li>
+          <li class="admin"><a href="admin.html" class="indigo darken-1"><i class="material-icons">priority_high</i>ADMIN</a></li>
           <li class="divider" tabindex="-1"></li>
-          <li><a href="#menu">Pizzas</a></li>
-          <li><a href="#modal_create_pizza" class="modal-trigger">Create</a></li>
-          <li><a href="#contanct">Contacts</a></li>
+          <li><a href="#menu"><i class="material-icons">local_pizza</i>Pizzas</a></li>
+          <li><a href="#contanct"><i class="material-icons">local_phone</i>Contacts</a></li>
           <li class="divider" tabindex="-1"></li>
-          <li class="logged-in"><a id="logout">Logout</a></li>
+          <li class="logged-in"><a id="logout"><i class="material-icons">exit_to_app</i>Logout</a></li>
         </ul>
       </div>
     </nav>
@@ -86,75 +84,31 @@
   </div>
 
 <!-- SHOPPING CART MODAL -->
-  <div id="modal_shopping_cart" class="modal">
-    <div class="modal-content center-align">
-      <h4>Your Shopping Cart</h4><br/>
-      <div class="right">
-        <span id="total_cost">Your shopping cart is empty</span>
-        <button class="waves-effect waves-light btn-small green darken-1 hidden" id="checkout">PLACE YOUR ORDER</button>
-      </div>
-      <table id="shopping_cart_table" class="highlight">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="shopping_cart_list">
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- CREATE PIZZA MODAL -->
-  <div id="modal_create_pizza" class="modal bottom-sheet">
+  <div id="modal_shopping_cart" class="modal bottom-sheet">
     <div class="modal-content">
-      <div class="create_pizza header">
-        <h2 class="white-text center">Create your own pizza!</h2>
+      <div class="header shopping_cart">
+        <h4 class="white-text center">Your Shopping Cart</h4>
       </div>
-      <form id="create" name="create_pizza_form">
-        <div class="input-field col s12" id="pizza_name_input">
-          <i class="material-icons prefix right">local_pizza</i>
-          <input id="name" type="text" class="validate" required>
-          <label for="name">Name</label>
-        </div>
-        <div class="center-align">
-        </div>
-        <div class="input-field col s12">
-          <select class="browser-default" required>
-            <option value="" disabled selected>Pizza size</option>
-            <option value="Big">Big</option>
-            <option value="Medium">Medium</option>
-            <option value="Small">Small</option>
-          </select>
-        </div>
+      <div class="container">
         <div class="center">
-          <button class="waves-effect waves-light btn-small amber darken-4" id="createbtn" type="submit">CREATE PIZZA
-            <i class="material-icons right">add</i>
-          </button>
+          <span id="total_cost">Your shopping cart is empty</span>
+          <button class="waves-effect waves-light btn-small green darken-1 hidden" id="checkout">PLACE YOUR ORDER</button>
         </div>
-      </form>
-
-      <div class="row hidden" id="create_pizza">
-        <div class="input-field col s12 l10 offset-l2">
-          <input id="search" type="text" placeholder="Type to search">
-        </div>
-        <div class="col s12 l5 offset-l1">
-          <ul class="collection z-depth-3" id="ingredients-list"></ul>
-        </div>
-  
-        <div class="col s12 l3 offset-l1">
-          <h4 class="center">Your order:</h4>
-          <ul class="collection z-depth-3 hidden" id="customer-list"></ul>
-          <div class="left">
-            <button class="btn hidden amber darken-4" id="order" >ORDER</button>
-            <span id="total"></span>
-          </div>
-          </div>
-        </div>
+        <table id="shopping_cart_table" class="highlight">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="shopping_cart_list">
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
+
 
 <!-- SIGN UP MODAL -->
   <div id="modal-signup" class="modal">
@@ -223,7 +177,8 @@
     <section class="section container scrollspy" id="contanct">
       <div class="row">
         <div class="col s12 l5">
-          <h2 class="amber-text text-darken-4">Get in Touch</h2>
+          <h4 class="amber-text text-darken-4">Get in Touch</h4>
+          <p>E-mail: contacts@pizzapanucci.com</p>
           <p>Phone: 8 900 3000 040</p>
           <p>Location: Vossenvangen 5700</p>
           <p>Adress: Bovejn 83</p>
@@ -257,7 +212,7 @@
       </div>
     </section>
     <div class="footer-copyright grey darken-4">
-      <div class="container center-align">&copy; 2020 Rudheim</div>
+      <div class="container center-align">&copy; 2020 .netHeim</div>
     </div>
   </footer>
 

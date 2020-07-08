@@ -49,7 +49,7 @@ function render_shopping_cart(doc){
         //total_cost.textContent = 'Total: ' + prices.reduce((a, b) => a + b, 0) + ' $'; //calculating sum of all ordered ingredients
         shopping_cart_list.innerHTML += html;
       });
-      total_cost.textContent = 'Total: ' + prices.reduce((a, b) => a + b, 0) + ' $'; 
+      total_cost.textContent = 'Total: ' + prices.reduce((a, b) => a + b, 0) + ' NOK'; 
       //changing intarface if shopping car is empty
       if(doc.data().shopping_cart.length == 0){
         checkout.classList.add('hidden');
@@ -62,7 +62,7 @@ function render_shopping_cart(doc){
 //
 //--add new item to the shopping cart DB
 menu.addEventListener('click', e => {
-  if(e.target.tagName ==="I"){
+  if(e.target.tagName ==="I" && e.target.textContent === 'shopping_basket'){
     const posID = e.target.parentElement.parentElement.parentElement.getAttribute('pizza-id'); //clicked item id
     db.runTransaction((transaction) => {
       return transaction.get(usersDB.doc(profileID.value))

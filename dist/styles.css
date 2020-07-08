@@ -39,6 +39,10 @@ span.badge.new{
   border-radius: 50px;
 }
 
+#account_menu{
+  width: 200px !important;;
+}
+
 /* color and shadow for drop down menu in the nav */
 .dropdown-content li{
   background-color:#212121;
@@ -76,6 +80,7 @@ span.badge.new{
 
 /*___________ PIZZA CARDS___________ */
 /* proper display of the cards to make them all eqaul no matter of content */
+
 .card {
   overflow: hidden;
 }
@@ -144,6 +149,7 @@ span.badge.new{
 /* _________FOOTER________ */
 footer ul li{
   display: inline;
+  margin: 10px;
 }
 
 /* contacts buttons */
@@ -154,6 +160,7 @@ footer ul li{
 /* ______OTHER STUFF_______ */
 .hidden{
   display: none !important;
+  margin: 10px;
 }
 
 i{
@@ -177,6 +184,28 @@ i{
   max-width: 350px;
 }
 
+/* ____SHOPPING CART MODAL MODAL____ */
+
+/* header of the modal */
+.shopping_cart{
+  background-color:#212121;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  height: 45px;
+}
+#modal_shopping_cart .modal-content{
+  padding: 0;
+}
+
+#modal_shopping_cart .container{
+  margin-top: 20px;
+}
+
+#modal_shopping_cart{
+  max-width: 600px;
+  margin: auto;
+}
+
 #checkout{
   margin-left: 20px;
   top: -5px;
@@ -187,107 +216,28 @@ i{
   font-weight: bold;
 }
 
-/* ____CREATE PIZZA MODAL____ */
-#modal_create_pizza{
-  height: 1400px;
-  z-index: 10;
-}
-/* pizza create modal form */
-#pizza_name_input{
-  right: 20px;
-}
-.input-field .prefix{
-  margin-left: 5px;
-}
-/* icon prefix focus color */
-.input-field .prefix.active {
-  color: #e65100;
-}
 
-/* header of the modal */
-.create_pizza{
-  background-color:#212121;
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
-}
-#modal_create_pizza .modal-content{
-  padding: 0;
-}
-
-.create_pizza h2{
-  margin: 0;
-  padding-bottom: 7px;
-}
-
-/* no pointer event because clicken between the lines will result a faild request to DB */
-#ingredients-list span, p{
-  pointer-events: none;
-}
-
-#createbtn{
-  margin: auto;
-}
-
-.select-wrapper input.select-dropdown:focus {
-  border-bottom: 1px solid #e65100;
+/* ------INPUT FILEDS------ */
+/* label underline focus color */
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]){
+  border-bottom: 1px solid #e65100 !important;
+  box-shadow: 0 1px 0 0 rgb(255, 94, 0) !important;
 }
 
 /* label focus color */
-.input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
-  color:  #e65100 !important;
+input[type=text]:not(.browser-default):focus:not([readonly])+label,
+input[type=email]:not(.browser-default):focus:not([readonly])+label,
+input[type=password]:not(.browser-default):focus:not([readonly])+label,
+textarea.materialize-textarea:focus:not([readonly])+label
+{
+  color:  #e65100 !important; 
 }
 
-/* label underline focus color */
-.input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #e65100 !important;
-  box-shadow: 0 1px 0 0 rgb(255, 94, 0) !important;
-}
-
-.input-field input[type=email]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
-  color:  #e65100 !important;
-}
-
-/* label underline focus color */
-.input-field input[type=email]:focus, .materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #e65100 !important;
-  box-shadow: 0 1px 0 0 rgb(255, 94, 0) !important;
-}
- 
-#ingredients-list span.title{
-  font-size: 1.2em;
-}
-
-.collection a.collection-item:not(.active):hover {
-  background-color: #e651007e;
-}
-
-#customer-list a:hover{
-  background-color: white;
-}
-
-.collection {
-  border: none;
-}
-
-#customer-list .collection-item{
-  padding-left: 5px;
-}
-
-#create{
-  max-width: 300px;
-  margin: auto;
-}
-
-#search{
-  max-width: 300px;
-}
-
-#customer-list{
-  margin-top: 55px;
-}
-
-#total{
-  margin-right: 10px;
+.input-field .prefix.active{
+  color: #e65100;
 }
 
 /* ---------------------------------------------------- */
@@ -394,6 +344,6 @@ i{
    }
 
   .sidenav{
-    width: 150px;
+    width: 200px;
   }
 }

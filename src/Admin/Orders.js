@@ -17,41 +17,38 @@ const getOrders = () => {
 
   const RenderOrders = (order) => {
 
-    let pizzas = [];
-    let custom_pizzas = [];
+    // let pizzas = [];
 
-    let order_details = order.data().order;
-    order_details.forEach(detail => {
-    (detail.includes("Custom") ? custom_pizzas : pizzas).push(detail)
-    })
+    // let order_details = order.data().order;
+    // order_details.forEach(detail => {
+    // (detail.includes("Custom") ? custom_pizzas : pizzas).push(detail)
+    // })
 
     const when = formatDistanceToNow(order.data().date.toDate(), {addSuffix: true});
     const exact_time = format(order.data().date.toDate(), "dd/mm/yyyy hh:mm:ss");
     let text_style = 'light-blue-text text-accent-3';
     let btn_style = 'blue';
+    let btn_icon = 'autorenew'
     if(order.data().status == "order-completed"){
       text_style = 'green-text text-darken-3';
       btn_style = 'green';
+      btn_icon = 'check';
     }
     let html = `
     <li order-id=${order.id}>
     <div class="collapsible-header">
       <span>${when}</span>
-      <a class="right btn-floating btn-small waves-effect waves-light ${btn_style}"><i class="material-icons">check</i></a>
+      <a class="right btn-floating btn-small waves-effect waves-light ${btn_style}"><i class="material-icons">${btn_icon}</i></a>
       <span class="right ${text_style}">${order.data().status}</span>
     </div>
       <div class="collapsible-body">
       <p class="grey-text">UserID: ${order.data().user_id}</p>
       <p>Exact time: ${exact_time}</p>
       <p class="bold_font">Name: ${order.data().name}</p>
-      <p class="green-text bold_font underline">Total cost: ${order.data().total_cost} $</p>
+      <p class="green-text bold_font underline">Total cost: ${order.data().total_cost} NOK</p>
       <p class="orange-text">Pizzas:</p>
       <ul>
-      ${pizzas.map(pizza => { return "<li> -" + pizza + "</li>"}).join("")}
-      </ul>
-      <p class="orange-text text-darken-4">Custom pizzas:</p>
-      <ul>
-      ${custom_pizzas.map(custom_pizza => { return "<li> -" + custom_pizza + "</li>"}).join("")}
+      ${order.data().order.map(pizza => { return "<li> -" + pizza + "</li>"}).join("")}
       </ul>
       </div>
     </li>

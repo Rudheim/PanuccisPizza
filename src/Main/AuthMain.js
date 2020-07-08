@@ -35,9 +35,6 @@ signupForm.addEventListener('submit', (e) => {
      usersDB.doc(cred.user.uid).set({
       name: signupForm.nickname.value,
       shopping_cart: []
-    });
-    usersDB.doc(cred.user.uid).collection('user_orders').doc('self_made_pizza').set({
-      ingredients: []
     })
   }).then(() => {
       modalClose('modal-signup', signupForm);
