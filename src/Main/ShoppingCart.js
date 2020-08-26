@@ -1,5 +1,6 @@
 import { menu, pizzas } from './PizzasMenu'
 import { usersDB } from './AuthMain'
+import { add } from 'date-fns';
 
 
 const ordersDB = db.collection('orders');
@@ -62,7 +63,7 @@ function render_shopping_cart(doc){
 //
 //--add new item to the shopping cart DB
 menu.addEventListener('click', e => {
-  if(e.target.tagName ==="I" && e.target.textContent === 'shopping_basket'){
+  if(e.target.tagName ==="I" && e.target.textContent === 'shopping_basket' && profileID.value){
     const posID = e.target.parentElement.parentElement.parentElement.getAttribute('pizza-id'); //clicked item id
     db.runTransaction((transaction) => {
       return transaction.get(usersDB.doc(profileID.value))
@@ -80,6 +81,8 @@ menu.addEventListener('click', e => {
           });
         })
     })
+  } if(e.target.tagName ==="I" && e.target.textContent === 'shopping_basket' && !profileID.value) {
+    M.Modal.getInstance(document.querySelector('#modal-login')).open();
   }
 })
 

@@ -1,6 +1,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -145,7 +147,10 @@
           <input type="password" id="login-password" required />
           <label for="login-password">Your password</label>
         </div>
-        <button class="btn amber darken-4">Login</button>
+        <div class="center">
+        <button class="btn amber darken-4">Login</button> <span>or</span>
+        <button id="orSign" class="btn amber darken-1"><a href="#modal-signup" class="modal-trigger white-text">Sign Up</a></li>
+        </div>
       </form>
     </div>
   </div>

@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   var elem = document.querySelector('.sidenav');
-  var instance = M.Sidenav.init(elem);
+  var instance = M.Sidenav.init(elem, {preventScrolling: true});
 });
 
 document.addEventListener('DOMContentLoaded', function() {

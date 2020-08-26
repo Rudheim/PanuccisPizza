@@ -22,6 +22,12 @@ const accountDetails = document.querySelector('.account-details');
 const user_profile = document.querySelector('#user_profile');
 const greeting_msg = document.querySelector('#greeting');
 
+document.querySelector('#orSign').addEventListener('click', e => {
+  e.preventDefault();
+  M.Modal.getInstance(document.querySelector('#modal-login')).close();
+})
+
+
 function logedIn(loggedUser, userdata){
   loggedInElem.forEach(elem => {
     if(elem.tagName == 'LI'){

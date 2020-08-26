@@ -1,3 +1,7 @@
+body{
+  background: url(./img/back.png) repeat;
+}
+
 /* ___________NAV MENU_________ */
 /* top nav menu  */
 nav{
